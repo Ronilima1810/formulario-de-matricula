@@ -1,0 +1,31 @@
+/* layout.css */
+
+#app{
+    display: grid;
+    grid-template-columns: 51.25% 48.75%;
+
+    height: 100vh;
+    overflow: hidden; /* Trava o scroll da página inteira */
+}
+
+main{
+    overflow: auto; /* Permite o scroll SÓ no main */
+    padding: 4rem;
+}
+
+/* Regra corrigida (fora do 'main') */
+main .main-container {
+    max-width: 33rem;
+    margin-left: auto;
+}
+
+aside{
+    background-color: var(--surface-secondary);
+    padding: 4rem;
+}
+
+/* Regra corrigida (fora do 'aside') */
+aside .aside-container{
+    max-width: 31.5rem;
+    margin-left: auto;
+}
