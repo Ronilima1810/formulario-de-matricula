@@ -22,7 +22,14 @@ legend{
 fieldset + fieldset{
 
     margin-top: 3rem;
-    
+
+}
+
+.actions-wrappers {
+
+    margin-top: 3rem;
+    display: flex;
+    gap: 1rem;
 
 
 }
