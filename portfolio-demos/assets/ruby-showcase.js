@@ -133,7 +133,7 @@ function updatePrice(){
  $('over-km').textContent=fmt(n)+' km';$('over-value').textContent=fmt(n*extraRate,true);$('total-price').textContent=fmt(val,true);
 }
 function csv(name,head,rows){const csvdata='\uFEFF'+[head,...rows].map(row=>row.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(';')).join('\r\n');const blob=new Blob([csvdata],{type:'text/csv;charset=utf-8'});const a=document.createElement('a');const link=URL.createObjectURL(blob);a.href=link;a.download=name;a.click();URL.revokeObjectURL(link);}
-function go(sectionId){section=sectionId;render();}
+function go(sectionId){if(selected==='frota'){fleetTab=sectionId;}else{section=sectionId;}render();}
 document.addEventListener('click',event=>{
  const nav=event.target.closest('[data-nav]');if(nav){go(nav.dataset.nav);return;}
  const fleetbtn=event.target.closest('[data-fleet]');if(fleetbtn){fleetTab=fleetbtn.dataset.fleet;render();return;}
