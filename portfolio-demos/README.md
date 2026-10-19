@@ -49,6 +49,7 @@ O GitHub Pages do repositório `formulario-de-matricula` já fornece a página e
 | FleetOps Admin | [Administração de frota](./fleet/) | Repositório privado `fleetops-gestao-frota` |
 | Android FleetOps | [Simulador móvel](./android/) | Kotlin e Jetpack Compose no repositório privado |
 | Lumus PDV Desktop | [Caixa e estoque](./pdv/) | Electron no repositório `sistema-pedidos` |
+| Wave Control | [Gestão de ondas](./ondas/) | Projeto Next.js/TypeScript com dados fictícios |
 
 As pastas `system/` e `android/` contêm código de interface independente da produção, com lógica de interação simulada. **O preview do Android não é um emulador de APK**, e sim uma reconstrução web visual dos fluxos nativos (login, home, romaneios, rotas, mapa, histórico e perfil).
 
@@ -57,3 +58,7 @@ Todos os previews são estáticos, publicados no GitHub Pages, com políticas de
 ## Verificações realizadas
 
 Os previews Ruby, FleetOps e Android foram disponibilizados com HTTP 200 e seus scripts JavaScript passaram pela validação sintática. A compilação real do React do repositório `ruby-tower-control`, o APK Android de desenvolvimento e os builds React/Next.js dos projetos públicos possuem workflows próprios.
+
+## Qualidade de demonstração
+
+O workflow [Verify Portfolio Previews](../.github/workflows/verify-previews.yml) checa a presença dos cinco previews dedicados, o JavaScript, o viewport e as políticas de conteúdo. A validação ocorre sem qualquer acesso ao backend corporativo. O Wave Control possui progressão de etapas e exportação CSV em dados fictícios, enquanto o Android é uma simulação web interativa, não uma execução do APK.
