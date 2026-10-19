@@ -5,7 +5,7 @@
 <meta name="description" content="Ruby Tower Control — portal demonstrativo baseado nos arquivos React e CSS originais da VPS.">
 <meta http-equiv="refresh" content="0;url=../ruby-original/#/portal">
 <title>Ruby Tower Control · Frontend original</title>
-<script>location.replace('../ruby-original/'+(location.hash||'#/portal'));</script>
+<script>const demoModule=new URLSearchParams(location.search).get('module');const route=location.hash||(demoModule==='pedidos'?'#/torre/pedidos':demoModule==='bi'?'#/bi':'#/portal');location.replace('../ruby-original/'+route);</script>
 </head><body>
 <p>O preview foi atualizado para utilizar os arquivos originais do Ruby Tower Control.</p>
 <p><a href="../ruby-original/#/portal">Abrir Ruby Tower Control — versão original</a></p>
