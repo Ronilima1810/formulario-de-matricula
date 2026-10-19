@@ -7,9 +7,12 @@
     {key:'torre',route:'/torre/pedidos',label:'Torre de Pedidos'},
     {key:'transporte',route:'/transporte',label:'Custos de Transporte'},
     {key:'central_financeira',route:'/central-financeira',label:'Central Financeira'},
+    {key:'agregados',route:'/agregados',label:'Gestão de Agregados'},
     {key:'checkin',route:'/checkin',label:'Check-in de Entrada'},
     {key:'compras',route:'/compras',label:'Compras'},
+    {key:'danfe_mg',route:'/danfe-mg',label:'DANFE MG'},
     {key:'admin',route:'/admin',label:'Administração'},
+    {key:'portal',route:'/portal',label:'Portal'},
     {key:'conta',route:'/conta',label:'Conta'}
   ];
   const branches = [
@@ -59,8 +62,7 @@
     document.querySelectorAll('iframe[src]').forEach(frame=>{
       const src=frame.getAttribute('src')||'';
       if (src.startsWith('/ruby/')) {
-        const name=src.split('/').filter(Boolean)[1]||'módulo';
-        frame.setAttribute('src','./module-demo.html?module='+encodeURIComponent(name));
+        frame.setAttribute('src','./module-demo.html?source='+encodeURIComponent(src));
       }
     });
   }).observe(document.documentElement,{childList:true,subtree:true});
