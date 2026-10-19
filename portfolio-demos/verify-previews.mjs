@@ -6,7 +6,7 @@ import {resolve} from 'node:path';
 const base=resolve(process.cwd(),'portfolio-demos');
 const pages=[
  ['Ruby', 'ruby/index.html','system/app.js','system/styles.css'],
- ['Ruby original', 'ruby-original/index.html','ruby-original/mock-api.js','ruby-original/assets/index-original-portal.js','ruby-original/assets/index-BhmzTfeJ.css','ruby-original/assets/ruby-responsive-100.css','ruby-original/assets/union.png'],
+ ['Ruby original', 'ruby-original/index.html','ruby-original/mock-api.js','ruby-original/module-demo.html','ruby-original/module-demo.js','ruby-original/module-demo.css','ruby-original/assets/ruby-theme.css','ruby-original/assets/index-original-portal.js','ruby-original/assets/index-BhmzTfeJ.css','ruby-original/assets/ruby-responsive-100.css','ruby-original/assets/union.png'],
  ['FleetOps Admin','fleet/index.html','system/app.js','system/styles.css'],
  ['Android simulator','android/index.html','android/app.js','android/styles-v2.css'],
  ['PDV Electron preview','pdv/index.html','pdv/app.js','pdv/styles.css'],
@@ -20,7 +20,7 @@ for(const [label,...files] of pages){
  check(/<meta[^>]+Content-Security-Policy/i.test(html),label+': CSP definida');
  check(/<meta[^>]+viewport/i.test(html),label+': viewport responsivo');
 }
-for(const file of ['assets/ruby-showcase-v7.js','ruby-original/mock-api.js','ruby-original/assets/index-original-portal.js','system/app.js','android/app.js','pdv/app.js','ondas/app.js']){
+for(const file of ['assets/ruby-showcase-v7.js','ruby-original/mock-api.js','ruby-original/module-demo.js','ruby-original/assets/index-original-portal.js','system/app.js','android/app.js','pdv/app.js','ondas/app.js']){
  const path=resolve(base,file);
  check(existsSync(path),'JS disponível: '+file);
  if(existsSync(path)){
@@ -42,5 +42,18 @@ check(native.includes('launcher-card'),'Ruby original usa cards reais');
 const mock=readFileSync(resolve(base,'ruby-original/mock-api.js'),'utf8');
 check(mock.includes("usuario@exemplo.invalid"),'Preview usa identidade fictícia');
 check(mock.includes("absolute.pathname === '/ruby/api/node.php'"),'API real interceptada localmente');
+
+check(mock.includes('data:demoBI'),'BI recebe resposta sintética');
+check(mock.includes("attributes:true,attributeFilter:['src']"),'Submenus PHP interceptados após mudar iframe');
+const modules=readFileSync(resolve(base,'ruby-original/module-demo.js'),'utf8');
+const requiredModules=['inventario','torre','transporte','central_financeira','agregados','checkin','compras','danfe_mg','admin','conta','about'];
+for(const name of requiredModules){
+ check(new RegExp('^\\\\s*'+name+':\\\\[','m').test(modules),'Módulo navegável: '+name);
+}
+check(modules.includes('Dev log|devlog'),'Inventário inclui subvisões completas');
+check(modules.includes('Processos|processos'),'Compras inclui processos');
+check(modules.includes('Negociação por agregado|negociacao'),'Agregados inclui negociação');
+check(modules.includes('dados locais, sem API'),'Dados demonstrativos sem backend');
+
 console.log('\nVerificação:',issues?'FALHOU':'APROVADA');
 process.exitCode=issues?1:0;
