@@ -8,7 +8,7 @@ const pages=[
  ['Ruby', 'ruby/index.html','system/app.js','system/styles.css'],
  ['Ruby original', 'ruby-original/index.html','ruby-original/mock-api.js','ruby-original/module-demo.html','ruby-original/module-demo.js','ruby-original/module-demo.css','ruby-original/assets/ruby-theme.css','ruby-original/assets/index-original-portal.js','ruby-original/assets/index-BhmzTfeJ.css','ruby-original/assets/ruby-responsive-100.css','ruby-original/assets/union.png'],
  ['FleetOps Admin','fleet/index.html','system/app.js','system/styles.css'],
- ['Android simulator','android/index.html','android/app.js','android/styles-v2.css'],
+ ['Android simulator','android/index.html','android/native-v3.js','android/native-v3.css','android/assets/native-icons.svg','android/assets/union_brand.png','android/assets/login_bg.mp4'],
  ['PDV Electron preview','pdv/index.html','pdv/app.js','pdv/styles.css'],
  ['Wave Control','ondas/index.html','ondas/app.js','ondas/styles.css']
 ];
@@ -20,7 +20,7 @@ for(const [label,...files] of pages){
  check(/<meta[^>]+Content-Security-Policy/i.test(html),label+': CSP definida');
  check(/<meta[^>]+viewport/i.test(html),label+': viewport responsivo');
 }
-for(const file of ['assets/ruby-showcase-v7.js','ruby-original/mock-api.js','ruby-original/module-demo.js','ruby-original/assets/index-original-portal.js','system/app.js','android/app.js','pdv/app.js','ondas/app.js']){
+for(const file of ['assets/ruby-showcase-v7.js','ruby-original/mock-api.js','ruby-original/module-demo.js','ruby-original/assets/index-original-portal.js','system/app.js','android/native-v3.js','pdv/app.js','ondas/app.js']){
  const path=resolve(base,file);
  check(existsSync(path),'JS disponível: '+file);
  if(existsSync(path)){
@@ -35,6 +35,18 @@ check(catalog.includes("external:'./ruby-original/#/portal'"),'Frontend Ruby ori
 check(catalog.includes("external:'./ruby-original/#/bi'"),'BI usa shell React do Ruby original');
 check(catalog.includes("external:'./ondas/'"),'Ondas na vitrine');
 check(catalog.includes("external:'./android/'"),'Simulador Android na vitrine');
+const kotlinPreview=readFileSync(resolve(base,'android/native-v3.js'),'utf8');
+const kotlinCss=readFileSync(resolve(base,'android/native-v3.css'),'utf8');
+for(const screen of ['login','register','forgot','approval','home','routes','history','profile','new','detail','stop','map','expenses','photo','signature','occurrence','address','updates']){
+  check(kotlinPreview.includes("s.page==='"+screen+"'")||kotlinPreview.includes("['"+screen+"'"),'Tela nativa Android: '+screen);
+}
+for(const token of ['#060d1c','#0e1a33','#9d60ff','#ffd52a','#35e08a']){
+  check(kotlinCss.includes(token),'Token Compose original: '+token);
+}
+check(kotlinPreview.includes('native-icons.svg'),'Ícones Android extraídos de TechIcons');
+check(kotlinPreview.includes('union_brand.png'),'Logo Union original na navegação e login');
+check(kotlinPreview.includes('login_bg.mp4'),'Vídeo original na autenticação');
+
 check(catalog.includes("external:'./fleet/'"),'FleetOps na vitrine');
 const native=readFileSync(resolve(base,'ruby-original/assets/index-original-portal.js'),'utf8');
 check(native.includes('Central de operações'),'Ruby original inclui a tela Command Center');
