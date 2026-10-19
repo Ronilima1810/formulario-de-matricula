@@ -36,7 +36,8 @@ const RUBY=[
  ['portal','Portal','◫'],['bi','Dashboard BI','▥'],['pedidos','Torre de Pedidos','☷'],['expedicao','Expedição','⇥'],['inventario','Inventário','▦'],['compras','Compras','▤'],['acessos','Acessos','◈'],['conta','Conta','◯'],['about','About','ⓘ']
 ];
 const FLEET=[['overview','Visão executiva','◫'],['drivers','Motoristas','◯'],['vehicles','Veículos','▣'],['routes','Saídas e rotas','⇥'],['rates','Negociação','▥'],['docs','Documentos','▤'],['finance','Financeiro','≋'],['access','Acessos','◈']];
-const state={section:isFleet?'overview':'portal',branch:'Todas as unidades',carrier:'Todas',search:'',filter:'Todos',theme:'dark',km:135,rate:2,threshold:100,base:190,helper:65,helperOn:true,drivers:demos.map(x=>({...x})),routes:fleetRoutes.map(x=>({...x})),message:''};
+const requestedModule=new URLSearchParams(location.search).get('module');
+const state={section:!isFleet&&['pedidos','bi','expedicao','inventario','compras','about'].includes(requestedModule)?requestedModule:(isFleet?'overview':'portal'),branch:'Todas as unidades',carrier:'Todas',search:'',filter:'Todos',theme:'dark',km:135,rate:2,threshold:100,base:190,helper:65,helperOn:true,drivers:demos.map(x=>({...x})),routes:fleetRoutes.map(x=>({...x})),message:''};
 function navName(id){const item=(isFleet?FLEET:RUBY).find(x=>x[0]===id);return item?item[1]:'Painel';}
 function btn(text,act,kind=''){return '<button class="btn '+kind+'" data-act="'+act+'">'+text+'</button>';}
 function tag(t){let kind=/entregue|conclu|aprovado/i.test(t)?'ok':/pendente|aguardando|aprovação/i.test(t)?'warn':/recusad|bloqueada/i.test(t)?'bad':'';return '<span class="state '+kind+'">'+escape(t)+'</span>';}
