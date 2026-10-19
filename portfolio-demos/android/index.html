@@ -1,28 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-BR"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Simulador interativo do aplicativo Android FleetOps: reprodução visual baseada nas telas Kotlin originais, com dados fictícios.">
-<meta name="theme-color" content="#080f20">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; object-src 'none'; form-action 'none'">
-<title>UNION FleetOps | Android — Live Preview</title>
-<link rel="stylesheet" href="styles-v2.css"><script defer src="app.js"></script>
-</head><body>
+<meta name="description" content="FleetOps Android — simulador visual do app UNION Agregados, baseado no código Jetpack Compose com logo e ícones originais.">
+<meta name="theme-color" content="#060D1C">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; media-src 'self'; connect-src 'none'; base-uri 'none'; object-src 'none'; frame-src 'none'; form-action 'none'">
+<title>UNION Agregados | Android Original — Live Preview</title>
+<link rel="stylesheet" href="native-v3.css">
+<script defer src="native-v3.js"></script>
+</head>
+<body>
 <div class="studio">
-<header class="globalbar"><a class="studio-brand" href="../"><span class="brandicon">U</span><span>UNION <b>ENGINEERING</b><small>PRODUCT EXPERIENCE</small></span></a><div class="global-links"><a href="../ruby/">Ruby Tower</a><a href="../fleet/">FleetOps Admin</a><a class="active" href="./">Android App</a><a href="../pdv/">PDV</a></div><span class="envflag"><i></i> DEMO · OFFLINE</span></header>
-<main class="showcase"><section class="story">
-<div class="eyebrow"><span class="bar"></span> ANDROID APPLICATION · 01 / FIELD OPERATIONS</div>
-<h1>Última milha.<br><em>Na palma da mão.</em></h1>
-<p class="intro">Experimente o fluxo de um agregado: acesso, rotas, romaneios, mapa de paradas, entregas e histórico. Interface demonstrativa baseada nos componentes <strong>Kotlin / Jetpack Compose</strong> do aplicativo original.</p>
-<div class="tagrow"><span>Jetpack Compose</span><span>Kotlin</span><span>Geolocalização</span><span>Last Mile</span></div>
-<div class="featuregrid">
-<div><span class="featic">01</span><strong>Rotas inteligentes</strong><small>Planejamento por romaneio e filial</small></div>
-<div><span class="featic">02</span><strong>Comprovantes</strong><small>Fluxo de entrega e ocorrências</small></div>
-<div><span class="featic">03</span><strong>Visão operacional</strong><small>KM, paradas e produtividade</small></div>
-<div><span class="featic">04</span><strong>Rastreabilidade</strong><small>Histórico e status da rota</small></div>
+  <header class="toolbar">
+    <a class="identity" href="../"><span class="identity-symbol">U</span><span>UNION <strong>AGREGADOS</strong><small>ANDROID · JETPACK COMPOSE</small></span></a>
+    <nav class="other-projects" aria-label="Outros projetos"><a href="../ruby-original/#/portal">Ruby Tower</a><a href="../fleet/">FleetOps Admin</a><a class="selected" href="./">App Android</a><a href="../pdv/">Lumus PDV</a></nav>
+    <span class="online"><span class="online-dot"></span> PREVIEW ISOLADO</span>
+  </header>
+  <main class="layout">
+    <div class="presentation">
+      <div class="eyebrow"><span></span> APP NATIVO · FRONT-END RECONSTRUÍDO</div>
+      <h1>A interface do motorista.<br><em>Agora no navegador.</em></h1>
+      <p>Experimente o fluxo do aplicativo UNION Agregados com identidade e recursos extraídos do projeto Android original: login, cadastro, rotas, mapa, paradas, comprovantes, ocorrências e histórico.</p>
+      <div class="tech-tags"><span>Kotlin + Compose</span><span>47 ícones originais</span><span>Logo e vídeo do APK</span><span>Dados fictícios</span></div>
+      <div class="coverage">
+        <div><span>01</span><div><strong>Autenticação e cadastro</strong><small>Login branco, recuperação, aprovação e campos cadastrais</small></div></div>
+        <div><span>02</span><div><strong>Operação de última milha</strong><small>Início, rotas, romaneios, histórico e perfil</small></div></div>
+        <div><span>03</span><div><strong>Mapa e entrega</strong><small>Paradas, endereço, canhoto, fachada, assinatura e ocorrência</small></div></div>
+        <div><span>04</span><div><strong>Rastreabilidade</strong><small>KM, despesas, evidências, encerramento e navegação simulada</small></div></div>
+      </div>
+      <div class="notice"><strong>Prévia visual, não o APK executado.</strong> A interface web segue o tema, os recursos e as telas do Kotlin, mas não renderiza Jetpack Compose de forma nativa. GPS, câmera, assinatura, mapas externos, financeiro e requisições são simulados localmente. Nenhum dado real é acessado.</div>
+      <p class="source"><a href="https://github.com/Ronilima1810/fleetops-gestao-frota" target="_blank" rel="noopener noreferrer">Abrir código Android privado no GitHub ↗</a></p>
+      <div class="quick"><strong>Ir direto para uma tela:</strong><div id="quick-sections"></div></div>
+    </div>
+    <section class="preview" aria-label="Simulador da interface Android"><div class="device-light"></div>
+      <div class="device">
+        <div class="phone">
+          <div class="android-status" aria-label="Barra de status Android"><span>09:41</span><span class="status-indicators">◕ ▰ ▰</span></div>
+          <div id="mobile-root"></div>
+          <div class="android-gesture"><span></span></div>
+        </div>
+      </div>
+      <div class="controls"><button id="reset" type="button">↺ Reiniciar</button><button id="demo-login" type="button">Entrar na demo</button><button id="fullscreen" type="button">⛶ Tela cheia</button></div>
+      <div class="device-caption">UNION AGREGADOS · NATIVE-SOURCED DEMO · OFFLINE</div>
+    </section>
+  </main>
+  <footer>UNION TOWER CONTROL · Prévia com dados fictícios · Nenhuma comunicação com a VPS · Design nativo como referência</footer>
 </div>
-<div class="notice"><strong>Ambiente de apresentação</strong><p>Todos os dados são inventados. Este preview reproduz interações no navegador, <b>não é um emulador Android</b> e não acessa o servidor, GPS, mapas reais ou informações de motoristas.</p></div>
-<a class="github" href="https://github.com/Ronilima1810/fleetops-gestao-frota" target="_blank" rel="noopener noreferrer">Código-fonte Android privado <span>↗</span></a>
-</section>
-<section class="device-zone" aria-label="Simulador interativo da interface móvel"><div class="device-aura"></div><div class="device"><div class="screen"><div class="sysbar"><span>09:41</span><span>●●● ▰</span></div><div id="mobile-root"></div><div class="systemline"><div></div></div></div></div><div class="previewcontrols"><button id="reset" type="button">↺ Reiniciar demonstração</button><button id="toggle-theme" type="button">◐ Alternar tema</button></div><div class="device-caption">LIVE WEB SIMULATOR · BASEADO NO APP NATIVO</div></section></main>
-<footer>UNION TOWER CONTROL · Engenharia de software · Dados fictícios · Sem conexão à produção</footer>
-</div></body></html>
+</body></html>
