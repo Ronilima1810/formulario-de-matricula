@@ -84,7 +84,15 @@ return '<div class="n-scroll"><div class="n-row" style="margin-bottom:14px">'+ic
 '<div class="n-segment" style="margin-bottom:13px"><button data-mode="romaneios" class="'+(s.routeMode==='romaneios'?'selected':'')+'">Romaneios SP</button><button data-mode="chaves" class="'+(s.routeMode==='chaves'?'selected':'')+'">Chaves NF-e</button></div>'+
 '<div class="n-stack">'+field('Nome da rota (opcional)','new-route-name','Ex.: Rota Norte Demo','text',s.routeName)+
 (s.routeMode==='romaneios'?manifestFields+btn('Adicionar outro romaneio','add-manifest','outline','plus')+'<p class="n-note">'+s.manifests.length+'/10 romaneios · Filial por linha</p>':textarea('Inserir chaves de NF-e','manual-keys','Chaves demonstrativas de 44 dígitos, uma por linha'))+
-btn('Gerar rota →','create-route','primary','route')+'</div></div>';}
+btn('Revisar romaneios →','review-route','primary','route')+'</div></div>';}
+function reviewRoute(){
+ const mf=s.manifests.filter(x=>x.number.trim()),keys=s.keys.split(/\s+/).filter(x=>/^\d{44}$/.test(x));
+ return '<div class="n-scroll">'+backTitle('Revisão da rota','Etapa 2 de 3 · Conferir antes de gerar')+
+ '<div class="n-panel"><h3>Resumo da operação</h3><div class="n-stack" style="margin-top:11px"><div class="n-row n-between"><span class="n-muted">Nome da rota</span><strong>'+esc(s.routeName||'Nova Rota Fictícia')+'</strong></div><div class="n-row n-between"><span class="n-muted">Romaneios</span><strong>'+mf.length+'</strong></div><div class="n-row n-between"><span class="n-muted">Chaves NF-e</span><strong>'+keys.length+'</strong></div></div></div>'+
+ (s.routeMode==='romaneios'?mf.map((m,i)=>'<div class="n-card"><h4>Romaneio '+(i+1)+'</h4><p>'+esc(m.number)+' · '+esc(m.branch)+'</p></div>').join(''):keys.map((k,i)=>'<div class="n-card"><h4>Chave NF-e '+(i+1)+'</h4><p>'+esc(k.slice(0,12))+'…'+esc(k.slice(-8))+'</p></div>').join(''))+
+ '<div class="n-panel"><h3>Conferindo NF-e...</h3><p>Esta revisão é local. Não há consulta ao Ruby nem a documentos fiscais reais.</p>'+btn('Gerar rota demonstrativa','create-route','primary','route')+'</div>'+
+ btn('Editar romaneios','back','outline','arrowLeft')+'</div>';
+}
 function routeDetail(){
 const r=activeRoute(),deliver=r.stops.filter(x=>x.status==='entregue').length;
 return '<div class="n-scroll">'+backTitle(r.title,'TOWER CONTROL · Detalhes da saída')+
@@ -101,7 +109,7 @@ const x=activeStop(),r=activeRoute();return '<div class="n-scroll">'+backTitle('
 '<div class="n-panel"><h3>Comprovantes · NF-e '+esc(x.nfe)+'</h3><p>Registrar evidências de entrega. No APK, fotos, assinatura e dados GPS ficam vinculados à nota.</p>'+
 '<div class="n-stack">'+btn((s.proofs[x.id+':canhoto']?'Canhoto registrado ✓':'Fotografar canhoto'),'photo:canhoto','outline','scan')+btn((s.proofs[x.id+':fachada']?'Fachada registrada ✓':'Foto da fachada'),'photo:fachada','outline','warehouse')+
 btn((s.signatureSaved[x.id]?'Assinatura registrada ✓':'Capturar assinatura'),'signature','outline','clipboard')+
-btn('Registrar ocorrência','occurrence','outline','alert')+
+btn('Registrar ocorrência','occurrence','outline','alert')+btn('Vídeo da entrega (simulado)','video-demo','outline','play')+
 (x.status==='entregue'?'<span class="n-badge green">Entrega confirmada</span>':btn('Confirmar entrega','confirm-stop','yellow','check'))+'</div></div></div>';}
 function routeMap(){
 const r=activeRoute(),stops=r.stops;return '<div class="n-scroll">'+backTitle(r.title,'Mapa de paradas · UNION')+
@@ -122,7 +130,7 @@ return '<div class="n-scroll">'+backTitle(labels[kind]||'Comprovante','NF-e '+x.
 '<div class="n-panel"><h3>'+esc(labels[kind])+'</h3><p>No Android, a câmera registra evidências com hora, GPS e a marca Union.</p>'+
 '<div style="border-radius:13px;overflow:hidden;margin:12px 0;background:#111a29;border:1px solid #48587a">'+
 '<div style="min-height:194px;background:linear-gradient(145deg,#253b50,#111b33);display:grid;place-items:center">'+ic(kind==='fachada'?'warehouse':kind==='canhoto'?'file':'alert')+'</div>'+
-'<div style="padding:10px;background:#0a1121"><img src="assets/union_brand.png" alt="Union" style="width:98px;height:27px;object-fit:contain"><div class="n-minor" style="margin-top:5px;color:#d9e0ff">NF-e '+esc(x.nfe)+' · Motorista Demonstrativo</div><div class="n-minor n-muted">19/10/2026 09:41 · GPS SIMULADO · Cidade Demo / SP</div></div></div>'+
+'<div style="padding:10px;background:#0a1121"><img src="assets/union_brand.png" alt="Union" style="width:98px;height:27px;object-fit:contain"><div class="n-minor" style="margin-top:5px;color:#d9e0ff">NF-e '+esc(x.nfe)+' · Motorista Demonstrativo</div><div class="n-minor n-muted">'+esc(new Date().toLocaleString('pt-BR'))+' · GPS SIMULADO · Cidade Demo / SP</div></div></div>'+
 btn('Simular captura de foto','photo-save','yellow','check')+'<p class="n-note" style="margin-top:9px">Imagem ilustrativa, sem câmera real nem localização do usuário.</p></div></div>';}
 function signature(){const x=activeStop();return '<div class="n-scroll">'+backTitle('Assinatura do recebedor','NF-e '+x.nfe)+
 '<div class="n-panel"><h3>Assinatura digital</h3><p>Assine com o mouse ou o dedo nesta área de demonstração.</p><canvas id="signature-canvas" width="326" height="198" style="width:100%;height:198px;background:#eaf0f5;border-radius:12px;touch-action:none"></canvas><div class="n-actions" style="margin-top:12px">'+btn('Limpar','signature-clear','outline','refresh')+btn('Salvar assinatura','signature-save','primary','check')+'</div></div></div>';}
@@ -131,7 +139,7 @@ const x=activeStop(),reasons=['Canhoto retido','Loja fechada','Endereço incorre
 return '<div class="n-scroll">'+backTitle('Registrar ocorrência','NF-e '+x.nfe)+
 '<div class="n-panel"><h3>Justificativa obrigatória</h3><div class="n-stack" style="margin:12px 0">'+reasons.map(r=>'<label class="n-row" style="font-size:12px"><input type="radio" class="n-radio" name="reason" value="'+esc(r)+'" '+(s.occurrenceReason===r?'checked':'')+'>'+esc(r)+'</label>').join('')+'</div>'+textarea('Detalhes adicionais (opcional)','occurrence-extra','Descreva o ocorrido...')+
 '<h3 style="margin:16px 0 10px">Fotografia obrigatória da ocorrência</h3><div class="n-note">Registro com marca Union, GPS e horário, simulados.</div>'+
-btn(s.occurrencePhoto?'Foto de demonstração ✓':'Simular foto da ocorrência','occurrence-photo','outline','scan')+
+btn(s.occurrencePhoto?'Foto de demonstração ✓':'Simular foto da ocorrência','occurrence-photo','outline','scan')+(s.occurrencePhoto?'<div class="n-panel" style="margin-top:9px"><img src="assets/union_brand.png" alt="Union" style="width:92px;height:30px;object-fit:contain"><div class="n-minor">FOTO DA OCORRÊNCIA · ENTREGA</div><p class="n-note">'+esc(new Date().toLocaleString('pt-BR'))+' · GPS FICTÍCIO · NF-e '+esc(x.nfe)+'</p></div>':'')+
 '<div style="height:10px"></div>'+btn('Salvar ocorrência','occurrence-save','yellow','check')+'</div></div>';}
 function address(){const x=activeStop();return '<div class="n-scroll">'+backTitle('Editar endereço de entrega','NF-e '+x.nfe)+
 '<div class="n-panel"><h3>Destinatário</h3><div class="n-stack" style="margin-top:12px">'+field('Endereço de entrega','delivery-address',esc(x.address),'text',x.address)+
@@ -149,6 +157,7 @@ function screenBody(){
  if(s.page==='history')return history();
  if(s.page==='profile')return profile();
  if(s.page==='new')return newRoute();
+ if(s.page==='review')return reviewRoute();
  if(s.page==='detail')return routeDetail();
  if(s.page==='stop')return stopDetail();
  if(s.page==='map')return routeMap();
@@ -197,7 +206,7 @@ function handleAction(action){
  if(action==='close-modal'){s.modal='';render();return;}
  if(action==='show-password'){s.showPw=!s.showPw;render();return;}
  if(action==='logout'){s=seed();render();return;}
- if(action==='back'){const page=s.page;if(['map','stop','expenses'].includes(page))go('detail');else if(['photo','occurrence','signature','address'].includes(page))go('stop');else if(page==='detail')go('routes');else if(['new','history','routes','profile','updates'].includes(page))go('home');else go('login');return;}
+ if(action==='back'){const page=s.page;if(['map','stop','expenses'].includes(page))go('detail');else if(['photo','occurrence','signature','address'].includes(page))go('stop');else if(page==='detail')go('routes');else if(page==='review')go('new');else if(['new','history','routes','profile','updates'].includes(page))go('home');else go('login');return;}
  if(action==='refresh'){popup('Atualizado localmente · dados apenas de demonstração.');return;}
  if(action==='new'){go('new');return;}
  if(action==='login'){go('login');return;}
@@ -212,6 +221,7 @@ function handleAction(action){
  if(action==='photo-save'){const x=activeStop();s.proofs[x.id+':'+s.selectedProof]=true;go('stop');popup('Evidência ilustrativa registrada apenas no navegador.');return;}
  if(action==='signature-clear'){initSignature();const el=document.getElementById('signature-canvas');el?.getContext('2d')?.clearRect(0,0,el.width,el.height);return;}
  if(action==='signature-save'){s.signatureSaved[activeStop().id]=true;go('stop');popup('Assinatura demonstrativa registrada.');return;}
+ if(action==='video-demo'){popup('Vídeo ilustrativo. Nenhum arquivo de câmera ou galeria é acessado.');return;}
  if(action==='occurrence-photo'){s.occurrencePhoto=true;popup('Foto simulada adicionada — sem câmera real.');return;}
  if(action==='occurrence-save'){if(!s.occurrencePhoto){popup('É necessária uma foto fictícia da ocorrência.');return;}activeStop().status='nao_entregue';s.occurrencePhoto=false;go('detail');popup('Ocorrência fictícia registrada.');return;}
  if(action==='address-save'){activeStop().address=document.getElementById('delivery-address')?.value||activeStop().address;go('stop');popup('Endereço alterado somente na demonstração.');return;}
@@ -223,6 +233,7 @@ function handleAction(action){
  if(action==='update-check'){s.modal='updateCheck';render();return;}
  if(action==='history-more'){s.historyLimit+=2;popup('Histórico fictício atualizado.');return;}
  if(action==='add-manifest'){persistFields();if(s.manifests.length<10)s.manifests.push({id:s.manifests.length+1,number:'',branch:'Ruby Rose SP'});render();return;}
+ if(action==='review-route'){persistFields();const okay=s.routeMode==='romaneios'?s.manifests.some(x=>x.number.trim()):s.keys.split(/\s+/).some(x=>/^\d{44}$/.test(x));if(!okay){popup('Informe romaneio ou chave NF-e fictícios antes da revisão.');return;}go('review');return;}
  if(action==='create-route'){persistFields();const manifest=s.manifests.filter(x=>x.number.trim()).map(x=>x.number.trim());const keys=s.keys.split(/\s+/).filter(x=>/^\d{44}$/.test(x));if(s.routeMode==='romaneios'&&!manifest.length){popup('Informe ao menos um número de romaneio fictício.');return;}if(s.routeMode==='chaves'&&!keys.length){popup('Informe uma chave fictícia de 44 dígitos.');return;}const id='DEMO-ROTA-'+String(s.routes.length+102).padStart(3,'0');s.routes.unshift({id,title:s.routeName||'Nova Rota Fictícia',status:'planejada',km:35.8,realKm:0,delivered:0,manifest:manifest[0]||'NFE-DEMO',stops:seedStops().slice(1,4).map((x,i)=>({...x,id:'CREATED-'+i,sequence:i+1,status:'pendente'}))});s.selected=id;go('detail');popup('Rota de demonstração criada sem chamar a API.');return;}
  if(action.startsWith('route:')){s.selected=action.slice(6);go('detail');return;}
  if(action.startsWith('stop:')){s.stopIndex=Number(action.slice(5))||0;go('stop');return;}
