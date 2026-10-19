@@ -8,9 +8,9 @@ Este diretório contém uma **vitrine estática**, publicada pelo GitHub Pages, 
 
 | Produto | Objetivo | Preview |
 |---|---|---|
-| Ruby BI | Inteligência logística, faturamento, frete, expedição e indicadores | [Abrir](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/ruby/) |
+| Ruby BI | Inteligência logística, faturamento, frete, expedição e indicadores | [Abrir](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/ruby-original/#/bi) |
 | FleetOps | Administração independente de frota e agregados: motoristas, veículos, rotas e remuneração | [Abrir](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/fleet/) |
-| Order Control Center | Torre de Pedidos com workflow, aging, separação e faturamento | [Abrir](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/ruby/?module=pedidos) |
+| Order Control Center | Torre de Pedidos com workflow, aging, separação e faturamento | [Abrir](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/ruby-original/#/torre/pedidos) |
 | **FleetOps Android** | Simulador web interativo baseado nos componentes Kotlin / Compose, com rotas e histórico fictícios | [Abrir](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/android/) |
 | Lumus PDV Desktop | Cliente Electron de demonstração, com interface ERP, caixa, estoque e relatórios | [Abrir](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/pdv/) |
 | Tradutor | Protótipo web de aplicação desktop Python | [Abrir](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/?demo=tradutor) |
@@ -19,7 +19,7 @@ Este diretório contém uma **vitrine estática**, publicada pelo GitHub Pages, 
 
 - `index.html` — ponto de entrada, com política de conteúdo restritiva (CSP).
 - `assets/ruby-showcase.css` — sistema visual demonstrativo inspirado no design system Ruby, com Manrope, temas claro/escuro, painéis e sidebar.
-- `assets/ruby-showcase-v5.js` — dados fictícios, navegação, filtros, painéis e interações inteiramente locais.
+- `assets/ruby-showcase-v7.js` — dados fictícios, navegação, filtros, painéis e interações inteiramente locais.
 - `assets/style.css` e `assets/app.js` — primeira versão, preservada apenas como referência histórica.
 
 ## Produtos e limites
@@ -45,7 +45,7 @@ O GitHub Pages do repositório `formulario-de-matricula` já fornece a página e
 
 | Sistema | Interface | Código original |
 | --- | --- | --- |
-| Ruby Tower | [Dashboard e módulos](./ruby/) | Repositório privado `ruby-tower-control` |
+| Ruby Tower | [Command Center + módulos PHP demonstrativos](./ruby-original/#/portal) | Repositório privado `ruby-tower-control` |
 | FleetOps Admin | [Administração de frota](./fleet/) | Repositório privado `fleetops-gestao-frota` |
 | Android FleetOps | [Simulador móvel](./android/) | Kotlin e Jetpack Compose no repositório privado |
 | Lumus PDV Desktop | [Caixa e estoque](./pdv/) | Electron no repositório `sistema-pedidos` |
@@ -62,3 +62,9 @@ Os previews Ruby, FleetOps e Android foram disponibilizados com HTTP 200 e seus 
 ## Qualidade de demonstração
 
 O workflow [Verify Portfolio Previews](../.github/workflows/verify-previews.yml) checa a presença dos cinco previews dedicados, o JavaScript, o viewport e as políticas de conteúdo. A validação ocorre sem qualquer acesso ao backend corporativo. O Wave Control possui progressão de etapas e exportação CSV em dados fictícios, enquanto o Android é uma simulação web interativa, não uma execução do APK.
+
+### Cobertura demonstrativa do Ruby (19/10/2026)
+
+A tela principal utiliza React/CSS **originais da VPS**. Estão liberados os 11 grupos de módulos operacionais com dados inventados: Inventário (16 visões), Torre, Transporte, Central Financeira, Agregados, Check-in, Compras (15 abas), DANFE MG, Administração, Conta e About. O Dashboard BI original possui seis visões com KPIs sintéticos.
+
+Os módulos PHP são simulações estáticas utilizando os tokens CSS reais, não o backend original. Consulte [matriz completa de módulos](./ruby-original/README.md). Os links antigos de BI e Torre redirecionam às rotas corretas.
