@@ -26,7 +26,7 @@ const groups={
 };
 const spec=groups[key]||groups.about;
 const tabs=spec.slice(2).map(x=>{const a=x.split('|');return {name:a[0],id:a[1]}});
-const tabRequest=src.searchParams.get('v')||src.searchParams.get('aba')||hashed.get('painel')||hashed.get('aba')||({configuracoes:'configuracoes'}[sub]||sub);
+const tabRequest=src.searchParams.get('v')||src.searchParams.get('aba')||hashed.get('painel')||hashed.get('aba')||({'usuarios.php':'usuarios','acessos.php':'acessos','equipes.php':'equipes','novo_usuario.php':'novo','configuracoes.php':'configuracoes'}[sub]||sub);
 const defaults=tabRequest&&tabs.some(x=>x.id===tabRequest)?tabRequest:tabs[0].id;
 const state={tab:defaults,search:'',filter:'Todos',sort:false,iterations:0,printed:0};
 const cols={
