@@ -3,8 +3,8 @@
   'use strict';
   const mockSystems = [
     {key:'bi',route:'/bi',label:'Dashboard'},
-    {key:'inventario',route:'/inventario/resumo',label:'Inventário'},
-    {key:'torre',route:'/torre/pedidos',label:'Torre de Pedidos'},
+    {key:'inventario',route:'/inventario',label:'Inventário'},
+    {key:'torre',route:'/torre',label:'Torre de Pedidos'},
     {key:'transporte',route:'/transporte',label:'Custos de Transporte'},
     {key:'central_financeira',route:'/central-financeira',label:'Central Financeira'},
     {key:'agregados',route:'/agregados',label:'Gestão de Agregados'},
@@ -65,5 +65,5 @@
         frame.setAttribute('src','./module-demo.html?source='+encodeURIComponent(src));
       }
     });
-  }).observe(document.documentElement,{childList:true,subtree:true});
+  }).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['src']});
 })();
