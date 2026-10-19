@@ -48,7 +48,7 @@ check(mock.includes("attributes:true,attributeFilter:['src']"),'Submenus PHP int
 const modules=readFileSync(resolve(base,'ruby-original/module-demo.js'),'utf8');
 const requiredModules=['inventario','torre','transporte','central_financeira','agregados','checkin','compras','danfe_mg','admin','conta','about'];
 for(const name of requiredModules){
- check(new RegExp('^\\\\s*'+name+':\\\\[','m').test(modules),'Módulo navegável: '+name);
+ check(modules.split('\n').some(line=>line.trimStart().startsWith(name+':[')),'Módulo navegável: '+name);
 }
 check(modules.includes('Dev log|devlog'),'Inventário inclui subvisões completas');
 check(modules.includes('Processos|processos'),'Compras inclui processos');
