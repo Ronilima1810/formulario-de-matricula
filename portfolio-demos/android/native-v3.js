@@ -264,4 +264,6 @@ document.getElementById('demo-login').addEventListener('click',()=>login());
 document.getElementById('fullscreen').addEventListener('click',()=>{const el=document.querySelector('.preview');if(document.fullscreenElement)document.exitFullscreen?.();else el.requestFullscreen?.();});
 const quick=[['login','Login'],['register','Cadastro'],['forgot','Recuperação'],['approval','Em aprovação'],['home','Início'],['routes','Minhas rotas'],['new','Nova rota'],['detail','Detalhe da rota'],['map','Mapa'],['stop','Entrega'],['photo','Comprovante'],['signature','Assinatura'],['occurrence','Ocorrência'],['expenses','Despesas'],['history','Histórico'],['profile','Perfil'],['updates','Atualização']];
 document.getElementById('quick-sections').innerHTML=quick.map(x=>'<button type="button" data-quick="'+x[0]+'">'+x[1]+'</button>').join('');
+const initialScreen=new URL(location.href).searchParams.get('screen');
+if(initialScreen&&quick.some(x=>x[0]===initialScreen)){s.page=initialScreen;s.authenticated=!['login','register','forgot','approval'].includes(initialScreen);if(['detail','stop','map','photo','occurrence','signature','address','expenses'].includes(initialScreen))s.selected='DEMO-ROTA-001';}
 render();
