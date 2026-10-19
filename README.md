@@ -1,3 +1,13 @@
+## ▶ Portfólio — Live Previews
+
+**[ABRIR GALERIA INTERATIVA DE SISTEMAS](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/)**
+
+[Dashboard Ruby](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/ruby/) · [FleetOps Admin](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/fleet/) · [App Android — simulador](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/android/) · [PDV Desktop](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/pdv/) · [Wave Control](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/ondas/)
+
+Os links abrem páginas do GitHub Pages, com dados fictícios e sem acesso a sistemas ou bancos de produção. O aplicativo Android é uma simulação web; o APK compilado fica no repositório privado FleetOps.
+
+---
+
 <img width="1916" height="927" alt="image" src="https://github.com/user-attachments/assets/7961ff05-6a9c-4b11-aeae-bcfa315fdb3f" />
 Formulário de Matrícula - Estrela do Amanhã 🌟
 
