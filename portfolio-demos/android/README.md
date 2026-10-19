@@ -4,6 +4,29 @@
 
 A versão 3 substitui o simulador visual genérico anterior. O resultado foi construído por comparação com os arquivos **reais do aplicativo nativo** no repositório privado [FleetOps](https://github.com/Ronilima1810/fleetops-gestao-frota/tree/main/android/app/src/main/java/online/lumustech/agregados/ui).
 
+## Links diretos para cada tela
+
+O mesmo simulador aceita o parâmetro `?screen=` para abrir qualquer módulo. Não é necessário passar pelo login demonstrativo para comparar o layout.
+
+| Tela | Abrir |
+|---|---|
+| Login com vídeo original | [Login](./?screen=login) |
+| Home com KPIs e mapa | [Início](./?screen=home) |
+| Romaneios / chaves NF-e | [Nova rota](./?screen=new) |
+| Detalhes de saída | [Detalhes](./?screen=detail) |
+| Paradas e navegação | [Mapa](./?screen=map) |
+| Parada / nota fiscal | [Entrega](./?screen=stop) |
+| Evidência com logo e metadados | [Foto / comprovante](./?screen=photo) |
+| Ocorrência com fotografia obrigatória | [Ocorrência](./?screen=occurrence) |
+| Assinatura | [Assinatura](./?screen=signature) |
+| Histórico de corridas | [Histórico](./?screen=history) |
+| Despesas | [Despesas](./?screen=expenses) |
+| Dados do agregado | [Perfil](./?screen=profile) |
+| Cadastro completo | [Cadastro](./?screen=register) |
+| Recuperação de senha | [Esqueci a senha](./?screen=forgot) |
+| Aprovação administrativa | [Em aprovação](./?screen=approval) |
+| Verificação de versão | [Atualização](./?screen=updates) |
+
 ## Screenshots da demonstração
 
 | Login | Início | Detalhes da rota |
