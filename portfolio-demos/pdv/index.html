@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'none'; base-uri 'none'; object-src 'none'; form-action 'none'">
+<meta name="theme-color" content="#f5f7fa">
+<title>Lumus PDV | Gestão de Vendas</title>
+<link rel="stylesheet" href="styles.css">
+<script defer src="app.js"></script>
+</head><body>
+<div class="layout">
+<aside class="sidebar"><div class="brand"><span class="brandmark">L</span><div><strong>LUMUS <b>PDV</b></strong><small>GESTÃO COMERCIAL</small></div></div>
+<div class="navcaption">WORKSPACE</div>
+<nav aria-label="Navegação principal">
+<button class="navitem active" data-page="pdv"><span class="navicon">▣</span> Frente de caixa</button>
+<button class="navitem" data-page="products"><span class="navicon">▦</span> Produtos e estoque</button>
+<button class="navitem" data-page="sales"><span class="navicon">≡</span> Histórico de vendas</button>
+<button class="navitem" data-page="reports"><span class="navicon">▥</span> Relatórios</button>
+</nav>
+<div class="sidebar-bottom"><strong>ESTAÇÃO DEMONSTRATIVA</strong><span>Dados armazenados apenas neste computador, sem conexão à API de produção.</span><div class="status"><i></i> Modo offline</div></div>
+</aside>
+<div class="shell">
+<header class="topbar"><div><span class="crumb">OPERACIONAL</span><span class="slash">/</span><strong id="crumb">Frente de caixa</strong></div><div class="header-actions"><span id="clock" aria-label="Data e hora da estação"></span><span class="pill">AMBIENTE DEMO</span><span class="userchip">PDV 01</span></div></header>
+<main id="app" tabindex="-1" aria-live="polite"></main>
+<footer class="footer">LUMUS PDV DESKTOP &nbsp; · &nbsp; INTERFACE ERP · NENHUMA TRANSAÇÃO FINANCEIRA REAL</footer>
+</div></div>
+<div id="toast" role="status" aria-live="polite"></div>
+</body></html>
