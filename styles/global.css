@@ -57,3 +57,12 @@ img {
 
 }
 
+
+/* Production-ready form foundations: zoom-safe, keyboard-friendly, fluid layout */
+html{scroll-behavior:smooth}
+body{overflow-x:hidden;overflow-y:auto;min-height:100vh;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:3px solid #f47b51;outline-offset:3px}
+:is(input,select,textarea,button){font:inherit}
+:is(input,select,textarea){max-width:100%;min-width:0}
+button{cursor:pointer}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
