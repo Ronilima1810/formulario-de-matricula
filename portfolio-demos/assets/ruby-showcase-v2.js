@@ -5,7 +5,7 @@ const PROJECTS=[
 {id:'bi',code:'01',label:'RUBY BI',name:'Inteligência logística',desc:'Dashboard analítico com filtros globais, expedição, frete e indicadores, seguindo o design system visual do Ruby.',tags:['BI','Power BI / SQL','Gestão logística'],repo:'bi-logistica'},
 {id:'frota',code:'02',label:'FLEET ADMIN',name:'Administração de frota',desc:'Sistema independente de gestão de agregados, motoristas, veículos, viagens, documentos e negociação de frete.',tags:['Frota','Última milha','Remuneração']},
 {id:'pedidos',code:'03',label:'ORDER CONTROL',name:'Torre de pedidos',desc:'Gestão operacional com etapas, aging, prioridades, status de separação, faturamento e expedição.',tags:['WMS','Pedidos','Expedição']},
-{id:'loja',code:'04',label:'WEB APP',name:'Loja de pedidos',desc:'Vitrine independente para o repositório PHP de produtos personalizados, preservando a distinção da Torre de Pedidos.',tags:['PHP','E-commerce'],repo:'sistema-pedidos'},
+{id:'loja',code:'04',label:'DESKTOP POS',name:'Sistema de Pedidos — PDV',desc:'Cliente Electron instalável com interface ERP, catálogo, caixa, estoque, histórico e relatórios em modo demonstração.',tags:['Electron','PDV Desktop','ERP UX'],repo:'sistema-pedidos',external:'./pdv/'},
 {id:'tradutor',code:'05',label:'DESKTOP APP',name:'Tradutor de arquivos',desc:'Prévia interativa do fluxo de uso do aplicativo desktop de tradução desenvolvido em Python.',tags:['Python','Desktop'],repo:'Sistemas'},
 {id:'matricula',code:'06',label:'FRONT-END',name:'Formulário de matrícula',desc:'Projeto original de interface responsiva em HTML e CSS, hospedado em GitHub Pages.',tags:['HTML','CSS','UX'],repo:'formulario-de-matricula',external:'https://ronilima1810.github.io/formulario-de-matricula/'}
 ];
