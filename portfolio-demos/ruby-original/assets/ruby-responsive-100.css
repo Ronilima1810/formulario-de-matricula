@@ -1,0 +1,207 @@
+/* Ruby Tower Control · workspace adaptive width / zoom 100%
+   Layer appended AFTER bundled Vite CSS. Does not change React or business APIs.
+   Desktop rail 108px; context navigation 224px.
+   All grids and frames must stay inside available viewport width. */
+html,body,#root {
+  box-sizing:border-box;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+}
+.command-shell {
+  box-sizing:border-box;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  overflow-x:clip;
+}
+.command-main {
+  box-sizing:border-box;
+  min-width:0!important;
+}
+.command-topbar,
+.command-content,
+.command-page,
+.frame-page,
+.frame-content,
+.launcher-grid,
+.command-grid-main,
+.two-panel-grid,
+.carrier-grid,
+.kpi-grid {
+  box-sizing:border-box;
+  max-width:100%;
+  min-width:0;
+}
+.command-content > *,
+.command-page > *,
+.launcher-grid > *,
+.command-grid-main > *,
+.two-panel-grid > *,
+.carrier-grid > *,
+.kpi-grid > *,
+.command-panel,
+.frame-page > *,
+.context-panel {
+  min-width:0;
+}
+.command-content {width:100%}
+.command-page {width:100%}
+/* Container queries only on Portal, not on interactive dashboards/modal pages. */
+.command-page:has(> .launcher-grid) {container-type:inline-size}
+.launcher-grid {
+  width:100%;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  align-items:stretch;
+}
+.launcher-card {
+  width:100%;
+  min-width:0!important;
+  max-width:100%;
+  min-height:126px;
+  padding:18px!important;
+  grid-template-columns:40px minmax(0,1fr) 14px!important;
+  align-items:center!important;
+  gap:15px;
+  overflow:hidden;
+}
+.launcher-card > div {
+  min-width:0;
+  max-width:100%;
+  overflow-wrap:anywhere;
+  align-self:center!important;
+}
+.launcher-card strong,
+.launcher-card span {
+  max-width:100%;
+  white-space:normal;
+  overflow-wrap:anywhere;
+}
+.launcher-card strong {font-size:15px;line-height:1.35}
+.launcher-card span {font-size:12px;line-height:1.5}
+.launcher-card > svg {
+  width:40px;
+  height:40px;
+  flex-shrink:0;
+}
+.launcher-card > b {
+  overflow:hidden;
+}
+.section-head {
+  min-width:0;
+  max-width:100%;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.section-head > * {min-width:0}
+.command-topbar {
+  width:100%;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,auto);
+}
+.topbar-left,
+.topbar-center,
+.topbar-user,
+.global-branch-bar {min-width:0;max-width:100%}
+.command-panel,
+.table-panel,
+.chart-box,
+.chart-container,
+.frame-page {
+  max-width:100%;
+}
+.table-wrap,
+.aging-heatmap-wrap {
+  max-width:100%;
+  overflow-x:auto;
+}
+.frame-page iframe,
+.legacy-frame,
+.frame-page .legacy-frame {
+  display:block;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  box-sizing:border-box;
+}
+.command-shell.tv-presentation .command-main {
+  width:100%!important;
+  max-width:100%!important;
+  margin-left:0!important;
+}
+@media (min-width:901px) {
+  .command-main {
+    margin-left:var(--command-rail-width,108px)!important;
+    width:calc(100% - var(--command-rail-width,108px))!important;
+    max-width:calc(100% - var(--command-rail-width,108px))!important;
+  }
+  .command-shell.context-open .command-main {
+    margin-left:calc(var(--command-rail-width,108px) + 224px)!important;
+    width:calc(100% - var(--command-rail-width,108px) - 224px)!important;
+    max-width:calc(100% - var(--command-rail-width,108px) - 224px)!important;
+  }
+  .command-shell.tv-presentation .command-main,
+  .command-shell.tv-presentation.context-open .command-main {
+    margin-left:0!important;
+    width:100%!important;
+    max-width:100%!important;
+  }
+}
+@media (max-width:900px) {
+  .command-main,
+  .command-shell.context-open .command-main {
+    margin-left:0!important;
+    width:100%!important;
+    max-width:100%!important;
+  }
+  .command-content {padding:14px 12px 28px}
+  .command-topbar {grid-template-columns:minmax(0,1fr) auto}
+  .topbar-user {display:none}
+}
+@media (max-width:620px) {
+  .command-topbar {grid-template-columns:minmax(0,1fr)!important}
+  .topbar-center {display:none}
+  .command-content {padding:11px 10px 25px}
+}
+@media (max-width:1350px) {
+  .launcher-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media (max-width:680px) {
+  .launcher-grid {grid-template-columns:minmax(0,1fr)!important}
+  .launcher-card {min-height:128px;padding:15px!important}
+}
+@container (max-width:1100px) {
+  .launcher-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@container (max-width:670px) {
+  .launcher-grid {grid-template-columns:minmax(0,1fr)!important}
+}
+@media(prefers-reduced-motion:reduce) {
+  .launcher-card {transition:none!important}
+}
+
+/* 18/10/2026 — pagina About ocupa todo o espaco do workspace, sem cartao/iframe emoldurado. */
+.command-content:has(.frame-page > iframe.about-frame) {
+  padding:0 !important;
+}
+.frame-page:has(> iframe.about-frame) {
+  width:100% !important;
+  max-width:none !important;
+  height:calc(100dvh - 66px) !important;
+  min-height:500px;
+  margin:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+}
+.frame-page > iframe.about-frame {
+  display:block;
+  width:100% !important;
+  height:100% !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+}
+@media (max-width:900px) {
+  .frame-page:has(> iframe.about-frame) { min-height:calc(100dvh - 66px); }
+}
