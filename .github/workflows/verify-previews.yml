@@ -1,0 +1,28 @@
+name: Verify Portfolio Previews
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'portfolio-demos/**'
+      - '.github/workflows/verify-previews.yml'
+  pull_request:
+    paths:
+      - 'portfolio-demos/**'
+      - '.github/workflows/verify-previews.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify static previews and JavaScript
+        run: node portfolio-demos/verify-previews.mjs
