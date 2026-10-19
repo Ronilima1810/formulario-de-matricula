@@ -5,7 +5,7 @@
 const root=document.getElementById('mobile-root');
 const phone=document.querySelector('.phone');
 const ic=(n,cls='')=>'<svg class="ico '+cls+'" aria-hidden="true"><use href="assets/native-icons.svg#'+n+'"></use></svg>';
-const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c])); 
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c])); 
 const brl=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(v);
 const logo='<img class="union-logo" alt="UNION" src="assets/union_brand.png">';
 const statusNames={planejada:'Planejada',em_rota:'Em rota',pausada:'Pausada',finalizada:'Finalizada',entregue:'Entregue',pendente:'Pendente',nao_entregue:'Ocorrência'};
