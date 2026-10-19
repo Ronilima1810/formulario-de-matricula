@@ -11,7 +11,7 @@ Este diretório contém uma **vitrine estática**, publicada pelo GitHub Pages, 
 | Ruby BI | Inteligência logística, faturamento, frete, expedição e indicadores | [Abrir](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/?demo=bi) |
 | FleetOps | Administração independente de frota e agregados: motoristas, veículos, rotas e remuneração | [Abrir](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/?demo=frota) |
 | Order Control Center | Torre de Pedidos com workflow, aging, separação e faturamento | [Abrir](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/?demo=pedidos) |
-| Loja de Pedidos | Simulação separada do projeto público PHP de comércio eletrônico | [Abrir](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/?demo=loja) |
+| Lumus PDV Desktop | Cliente Electron de demonstração, com interface ERP, caixa, estoque e relatórios | [Abrir](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/pdv/) |
 | Tradutor | Protótipo web de aplicação desktop Python | [Abrir](https://ronilima1810.github.io/formulario-de-matricula/portfolio-demos/?demo=tradutor) |
 
 ## Arquitetura da vitrine
@@ -29,7 +29,7 @@ Este diretório contém uma **vitrine estática**, publicada pelo GitHub Pages, 
 
 **Order Control Center:** apresentação de uma torre operacional de pedidos com fluxos inspirados em processos logísticos. Não acessa dados reais do Ruby.
 
-**Loja de Pedidos:** não deve ser confundida com a Torre de Pedidos. Seu repositório público original é [sistema-pedidos](https://github.com/Ronilima1810/sistema-pedidos).
+**Lumus PDV Desktop:** aplicativo Electron independente em [sistema-pedidos/desktop-pdv](https://github.com/Ronilima1810/sistema-pedidos/tree/master/desktop-pdv), com preview estático navegável e instalador Windows gerado via GitHub Actions. Não representa integração SaaS completa nem realiza vendas fiscais.
 
 ## Segurança
 
