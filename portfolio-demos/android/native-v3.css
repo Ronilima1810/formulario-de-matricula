@@ -18,3 +18,23 @@
 .preview:fullscreen{background:#090e1e;min-width:100vw;min-height:100vh;padding:14px}.preview:fullscreen .device{width:min(396px,95vw)}.preview:fullscreen .phone{height:min(800px,86vh)}
 @media(max-width:1100px){.layout{grid-template-columns:1fr;gap:30px;padding:35px 22px}.presentation h1{font-size:45px}.coverage{max-width:690px}.other-projects{gap:12px}.preview{padding-bottom:18px}}@media(max-width:720px){.toolbar{padding:15px;flex-wrap:wrap;gap:13px}.other-projects{order:3;width:100%;justify-content:space-between;gap:9px;font-size:10px;overflow:auto}.online{margin-left:auto}.layout{padding:25px 13px}.presentation h1{font-size:39px}.presentation>p{font-size:13px}.device{width:385px}.phone{height:735px}.coverage{gap:8px}.coverage>div{padding:11px}}@media(max-width:390px){.device{width:min(100%,355px);border-radius:40px}.phone{height:715px;border-radius:32px}.n-stats{gap:3px}.n-stat{padding:8px 4px}.n-stat strong{font-size:13px}.coverage{grid-template-columns:1fr}.n-scroll{padding:10px 10px 22px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* UNION login preview 2026-10-20 — logo principal, sem video; dados exclusivamente ficticios */
+.n-login{background:linear-gradient(180deg,#fff 0%,#f9faff 69%,#f2f0ff 100%);color:#171922}
+.n-login .n-scroll{padding:16px 20px 26px}
+.n-login .union-logo{height:54px;object-fit:contain}
+.login-caption{letter-spacing:.11em;font-size:10px;color:#27324c;margin-top:7px}
+.login-hero{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;flex-direction:column;min-height:185px;margin:14px 0 16px;overflow:hidden;border-radius:20px;border:1px solid #dfe3f4;background:radial-gradient(ellipse at 50% 54%,#ecedff 0%,#f7f8ff 55%,#fff 100%);box-shadow:0 10px 25px #171c4d0b}
+.login-hero::before,.login-hero::after{content:"";position:absolute;inset:17px;border:1px solid #858ed329;border-radius:15px;pointer-events:none}.login-hero::after{inset:35px 17px;transform:skewY(-12deg);border-color:#7958d71c}
+.login-hero-glow{position:absolute;width:200px;height:110px;border-radius:50%;background:#897cfa22;filter:blur(28px)}
+.login-hero-brand{position:relative;z-index:1;display:block;width:85%;max-height:98px;object-fit:contain;filter:drop-shadow(0 8px 14px #50448e22)}
+.login-hero-rule{position:relative;z-index:1;width:60px;height:2px;border-radius:4px;background:#6848d8;margin:11px 0 9px}
+.login-hero span{position:relative;z-index:1;font-weight:800;font-size:9px;letter-spacing:.13em;color:#65658a}
+.login-title{font-size:24px;margin:11px 0 4px}
+.login-desc{font-size:12px;margin-bottom:13px}
+.login-card{background:#fff;border-radius:18px;padding:14px 14px 12px;gap:12px;box-shadow:0 8px 20px #2124490a}
+.login-submit{display:block;margin-top:13px;min-height:50px;background:transparent;color:#6848d8;border:1.5px solid #6848d8;border-radius:13px;font-size:14px}
+.login-submit:hover,.login-submit:focus-visible{background:#6848d8;color:white}
+.login-actions-divider{height:1px;background:#e3e5ec;margin:7px 0 3px}
+.login-text-btn{font-size:12px;min-height:33px}
+@media(max-width:380px){.login-hero{min-height:155px}.login-hero-brand{max-height:78px}}
