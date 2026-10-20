@@ -1,0 +1,47 @@
+/* UNION Admin · legibilidade do módulo Agregados · 18/10/2026 */
+.ag-body,.ag-page{font-size:14px;line-height:1.6}
+.ag-head h1{font-size:clamp(27px,2.5vw,34px)}
+.ag-head p{font-size:14px}
+.ag-head span:not(.ag-live-pill span),.ag-panel-head span{font-size:11.5px;letter-spacing:.8px}
+.ag-panel-head h2{font-size:18px;line-height:1.4}
+.ag-panel-head>small,.ag-fin-help{font-size:13px;line-height:1.65}
+.ag-quick-nav a,.ag-filters a{font-size:12px}
+.ag-quick-nav{padding:10px}
+.ag-quick-nav a{min-height:39px}
+.ag-kpis small,.ag-fin-kpis article small{font-size:12px}
+.ag-kpis span,.ag-live-item span,.ag-live-item small,
+.ag-history-item,.ag-history-item small{font-size:12.5px}
+.ag-live-item{padding:14px 15px}
+.ag-live-item strong{font-size:14px;line-height:1.45}
+.ag-gps-state,.ag-live-meta b{font-size:11px!important}
+.ag-live-item .ag-compass-readout{font-size:12px;color:var(--ag-accent);font-weight:800}
+.ag-monitor-alert,.ag-monitor-alert span{font-size:12.5px;line-height:1.5}
+.ag-panel h3,.ag-fin-subtitle{font-size:15px}
+.ag-fin-table th{font-size:11.5px;letter-spacing:.2px}
+.ag-fin-table td{font-size:13px;line-height:1.6}
+.ag-fin-table td small,.ag-fin-table td strong{font-size:12.5px}
+.ag-detail-content p,.ag-detail-content label{font-size:13px}
+.ag-body :is(input:not([type=checkbox]):not([type=radio]),select,textarea){font-size:13.5px;min-height:41px}
+.ag-body :is(button,a.ag-btn){font-size:12.5px;min-height:39px}
+.ag-fin-filters label,.ag-pricing label,.ag-edit-acerto label{font-size:13px}
+.ag-driver-name strong{font-size:14px}
+.ag-driver-name span,.ag-driver-data b{font-size:12.5px}
+.ag-driver-data small,.ag-pricing small{font-size:11px}
+.ag-status,.ag-pay-status{font-size:11px!important}
+.ag-dispatch-top label,.ag-dispatch-row label{font-size:12.5px}
+.ag-map-tv-link{font-size:12.5px}
+.ag-gps-heading{position:absolute;top:-23px;left:50%;color:#39c4ff;
+ font-style:normal;font-size:17px;text-shadow:0 0 4px #030916,0 0 5px #fff;pointer-events:none}
+.ag-map-pin{position:relative}
+.ag-live-item.ag-selected{outline:2px solid var(--ag-accent);outline-offset:-2px}
+.ag-live-item.ag-selected:after{content:"✓ Selecionado · toque novamente para desmarcar";
+ display:block;margin-top:7px;font-size:11px;color:var(--ag-accent);font-weight:800}
+.ag-tv-head small{font-size:13px}
+.ag-tv .ag-live-list{font-size:13px}
+@media(max-width:720px){
+.ag-page{font-size:13.5px}
+.ag-panel-head h2{font-size:17px}
+.ag-quick-nav a{font-size:11.5px}
+.ag-kpis small{font-size:11px}
+.ag-fin-table th{font-size:11px}
+}
