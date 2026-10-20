@@ -58,14 +58,14 @@ function history(){const records=s.routes.filter(x=>x.status==='finalizada').fil
 '<button class="n-outline" data-act="history-more" style="width:100%">'+ic('down')+' Carregar corridas anteriores</button></div>';}
 function loginPage(){
  return '<div class="n-scroll">'+logo+'<div class="login-caption">TOWER CONTROL · AGREGADOS</div>'+
- '<div class="login-video"><video playsinline autoplay muted loop preload="metadata" src="assets/login_bg.mp4" aria-label="Vídeo original do login do aplicativo"></video></div>'+
+ '<div class="login-hero" aria-label="UNION Tower Control"><div class="login-hero-glow"></div><img src="assets/union_brand.png" alt="UNION" class="login-hero-brand"><div class="login-hero-rule"></div><span>TECNOLOGIA PARA A ÚLTIMA MILHA</span></div>'+
  '<div class="login-title">Acesse sua conta</div><p class="login-desc">Utilize o mesmo e-mail e senha do PWA.</p>'+
  '<form id="login-form" class="login-card">'+field('E-mail','login-email','agregado@exemplo.invalid','email','')+
  '<label class="n-field">Senha<div style="position:relative"><input type="'+(s.showPw?'text':'password')+'" id="login-password" placeholder="Senha fictícia" style="padding-right:81px"><button type="button" data-act="show-password" style="position:absolute;right:6px;top:5px;border:0;background:transparent;color:#6848d8;padding:10px;font-size:11px">'+(s.showPw?'Ocultar':'Mostrar')+'</button></div></label>'+
- '<button type="submit" class="login-submit">Entrar</button></form>'+
+ '</form><button form="login-form" type="submit" class="login-submit">Entrar</button>'+
  '<button class="login-text-btn" data-go="forgot">Esqueci minha senha</button>'+
  '<button class="login-text-btn secondary" data-go="register">Criar cadastro de agregado</button>'+
- '<button class="login-text-btn" data-act="updates">↻ Verificar atualização do aplicativo</button>'+
+ '<div class="login-actions-divider"></div><button class="login-text-btn" data-act="updates">↻ Verificar atualização do aplicativo</button>'+
  '<p style="font-size:10px;color:#626b7c;text-align:center;margin-top:6px">UNION · Versão demonstrativa</p></div>';
 }
 function registerPage(){
