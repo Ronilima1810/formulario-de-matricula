@@ -106,7 +106,7 @@
     document.querySelectorAll('iframe[src]').forEach(frame=>{
       const src=frame.getAttribute('src')||'';
       if (src.startsWith('/ruby/')) {
-        frame.setAttribute('src','./module-demo.html?source='+encodeURIComponent(src));
+        frame.setAttribute('src',src.startsWith('/ruby/agregados/')?'../fleet/module.html':'./module-demo.html?source='+encodeURIComponent(src));
       }
     });
   }).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['src']});
