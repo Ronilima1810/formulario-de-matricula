@@ -82,9 +82,9 @@ function extra(){
  if(key==='about'&&state.tab==='seguranca')return '<section class="demo-panel"><div class="demo-panel-head"><h2>Segurança e LGPD</h2></div><div class="demo-panel-content"><p>O sistema original possui autenticação e segregação de módulos. Esta cópia pública não contém senhas, tokens, bases empresariais ou dados operacionais.</p></div></section>';
  return '';
 }
-function map(){
- return '<div class="demo-mini-map" aria-label="Mapa esquemático, sem posições reais"><span class="demo-map-pin">ROTA DEMO A</span><span class="demo-map-pin">ROTA DEMO B</span><span class="demo-map-pin">ROTA DEMO C</span></div><p class="demo-note">Mapa ilustrativo. Não mostra motoristas nem geolocalização real.</p>';
-}
+function map(){return '<div id="ruby-demo-leaflet" style="height:225px;min-height:225px;border-radius:10px" aria-label="Mapa Leaflet de rotas fictícias"></div><p class="demo-note">Leaflet · posições fictícias em São Paulo · sem GPS real.</p>';}
+let rubyDemoMap=null;
+function initRubyDemoMap(){if(rubyDemoMap){rubyDemoMap.remove();rubyDemoMap=null;}const el=document.getElementById('ruby-demo-leaflet');if(!el||typeof L==='undefined')return;rubyDemoMap=L.map(el,{scrollWheelZoom:false}).setView([-23.55,-46.63],11);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors'}).addTo(rubyDemoMap);[[-23.52,-46.68],[-23.59,-46.65],[-23.55,-46.56]].forEach((ll,i)=>L.marker(ll).addTo(rubyDemoMap).bindPopup('ROTA DEMO '+String.fromCharCode(65+i)));setTimeout(()=>rubyDemoMap?.invalidateSize(),60);}
 function show(){
  const tab=tabs.find(x=>x.id===state.tab)?.name||tabs[0].name;
  const filtered=rows.filter(r=>(state.filter==='Todos'||r.at(-1)===state.filter)&&r.join(' ').toLowerCase().includes(state.search.toLowerCase()));
@@ -105,6 +105,7 @@ function show(){
  html+=filtered.map((r,i)=>'<tr>'+r.map((value,j)=>'<td>'+(j===r.length-1?'<span class="demo-state '+(['Pendente','Aguardando'].includes(value)?'wait':value==='Em análise'?'fail':'')+'">'+esc(value)+'</span>':esc(value))+'</td>').join('')+'<td><button class="demo-miniaction" data-view="'+esc(r[0])+'">Abrir</button></td></tr>').join('')||'<tr><td colspan="7" class="demo-empty">Nenhum resultado nos filtros aplicados.</td></tr>';
  html+='</tbody></table></div><div class="demo-bottom">'+filtered.length+' registros fictícios · Matriz Demo '+(['SP','MG','PR','PE'][Number(src.searchParams.get('filial')||1)%4]||'SP')+' · dados locais, sem API</div></section>';
  root.innerHTML=html;
+ initRubyDemoMap();
 }
 function toast(message){const el=document.createElement('div');el.className='demo-toast';el.setAttribute('role','status');el.textContent=message;document.body.appendChild(el);setTimeout(()=>el.remove(),2600);}
 function exportCsv(){const table=[cols[key]||cols.about,...rows];const csv='\ufeff'+table.map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(';')).join('\r\n');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='ruby-'+key+'-'+state.tab+'-DEMO.csv';a.click();URL.revokeObjectURL(url);}
