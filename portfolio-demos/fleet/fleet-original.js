@@ -57,9 +57,10 @@ function KPIs(){return '<section class="ag-kpis" id="visao-geral">'+[
 function alerts(){return '<section class="ag-panel" id="alertas">'+head('CENTRAL DE ALERTAS','Agregados parados e sem sinal','Parado: GPS atualizado + 10 min sem movimento. Sem sinal: mais de 3 min sem GPS.')+
 '<div id="agAlerts" class="ag-alert-list"><div class="ag-empty">'+icon('<path d="m8 12 3 3 5-6"/><circle cx="12" cy="12" r="9"/>')+' Nenhum alerta de rastreamento ativo nesta demonstração.</div></div>'+
 '<details class="ag-alert-history" '+(state.alertHistory?'open':'')+'><summary>Histórico de alertas dos últimos 7 dias</summary><div id="agAlertHistory" class="ag-history-list"><div class="fleet-history">19/10/2026, 14:10 · GPS de exemplo normalizado · Agregado Exemplo 02</div><div class="fleet-history">18/10/2026, 10:22 · Alerta fictício de imobilidade encerrado</div></div></details></section>';}
-function mapMarkup(){const selected=state.selected;const items=state.routes.filter(x=>x.status==='em_rota');return '<div class="fleet-map-surface '+(state.mapStyle==='dark'?'fleet-map-dark':'')+'"><svg class="fleet-map-lines" viewBox="0 0 650 390" preserveAspectRatio="none" aria-hidden="true"><path d="M60 370L160 220L205 245L310 105L430 190L580 54" /><path d="M120 40L160 220L350 340L550 245" /><path d="M20 210L150 180L265 90L480 310L650 325" /><path class="route-line" d="M160 220L205 245L310 105L430 190L580 54"/></svg>'+
-items.map((r,i)=>'<button type="button" class="fleet-map-pin '+(selected===r.id?'active':'')+'" data-route="'+esc(r.id)+'" style="left:'+(i?65:38)+'%;top:'+(i?35:62)+'%" aria-label="Selecionar '+esc(driverName(r.driver))+'"><span>➤</span></button>').join('')+
-'<div class="fleet-map-legend">Mapa demonstrativo · posições ilustrativas · sem GPS real</div><div class="fleet-map-controls"><button type="button" data-action="map-zoom" aria-label="Aumentar zoom">+</button><button type="button" data-action="map-zoom" aria-label="Reduzir zoom">−</button></div></div>';}
+function mapMarkup(){return '<div id="fleet-leaflet" aria-label="Mapa Leaflet demonstrativo" style="height:100%;width:100%"></div><div class="fleet-map-legend">Leaflet · coordenadas simuladas · sem GPS real</div>';}
+let fleetMap=null;
+function initFleetMap(){if(fleetMap){fleetMap.remove();fleetMap=null;}const el=document.getElementById('fleet-leaflet');if(!el||typeof L==='undefined')return;fleetMap=L.map(el,{scrollWheelZoom:false}).setView([-23.55,-46.63],10);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'}).addTo(fleetMap);const pts=[];state.routes.filter(r=>r.status==='em_rota').forEach((r,i)=>{const p=[-23.55+(i?-.067:.032),-46.63+(i?.085:-.048)];pts.push(p);L.marker(p).addTo(fleetMap).bindPopup('<b>'+esc(driverName(r.driver))+'</b><br>'+esc(r.id)+'<br>Coordenada ilustrativa').on('click',()=>{state.selected=r.id;});});if(pts.length>1)fleetMap.fitBounds(pts,{padding:[36,36],maxZoom:11});setTimeout(()=>fleetMap?.invalidateSize(),60);}
+
 function tracking(){const items=state.routes.filter(x=>x.status==='em_rota');return '<section class="ag-panel" id="rastreamento">'+head('RASTREAMENTO','Operação ao vivo','')+
 '<div class="ag-live-toolbar"><label><input type="checkbox" id="agFollow" '+(state.mapFollow?'checked':'')+'> Seguir agregado selecionado</label><button type="button" data-action="fit">Enquadrar mapa</button><button type="button" class="ag-map-tv-link" data-action="tv">⛶ Tela cheia · Modo TV ↗</button><button type="button" id="agMapTheme" data-action="map-theme">Mapa '+(state.mapStyle==='light'?'escuro':'claro')+'</button><small>GPS recebido na rota ativa · demonstração sem conexão</small></div>'+
 '<div class="ag-live-grid"><div id="agMap" class="ag-map" role="img" aria-label="Mapa demonstrativo dos agregados ativos">'+mapMarkup()+'</div><div class="ag-live-list" id="liveList">'+items.map(r=>'<button type="button" class="ag-live-item '+(r.id===state.selected?'ag-selected':'')+'" data-route="'+esc(r.id)+'"><strong>'+esc(driverName(r.driver))+'</strong><span>'+esc(r.id)+' · '+r.done+'/'+r.stops+' paradas entregues</span><div class="ag-live-meta"><b>'+esc(r.gps)+'</b><b>'+r.actualKm+' km percorridos</b></div><span class="fleet-status is-live">● Em rota</span></button>').join('')+'</div></div></section>';}
@@ -125,6 +126,7 @@ function render(){
  KPIs()+alerts()+tracking()+dispatch()+canhotos()+finance()+cadastros()+tariffs()+
  '<div class="fleet-footer">UNION · TOWER CONTROL — Simulação offline. Todos os registros são fictícios. Nenhum envio à VPS ou ao GitHub.</div></main>'+modal()+
  (state.notice?'<div class="fleet-toast" role="status">'+esc(state.notice)+'</div>':'');
+ initFleetMap();
 }
 function toast(message){state.notice=message;render();setTimeout(()=>{if(state.notice===message){state.notice='';document.querySelector('.fleet-toast')?.remove();}},2500);}
 function rememberForms(){const d=document.getElementById('dispatch-driver'),t=document.getElementById('dispatch-title');if(d)state.dispatchDriver=d.value;if(t)state.dispatchTitle=t.value;state.manifests.forEach((m,i)=>{const n=document.querySelector('[data-manifest="'+i+'"]'),b=document.querySelector('[data-branch="'+i+'"]');if(n)m.number=n.value;if(b)m.branch=b.value;});}
@@ -148,7 +150,8 @@ document.addEventListener('click',event=>{
  if(action==='theme'){state.theme=state.theme==='light'?'dark':'light';rerender();return;}
  if(action==='map-theme'){state.mapStyle=state.mapStyle==='light'?'dark':'light';rerender('rastreamento');return;}
  if(action==='close-detail'){state.detailRoute=null;rerender('acertos');return;}
- if(action==='fit'||action==='map-zoom'){state.expenseModal='zoom';rerender('rastreamento');return;}
+ if(action==='fit'){if(fleetMap){const b=[];fleetMap.eachLayer(layer=>{if(layer instanceof L.Marker)b.push(layer.getLatLng());});if(b.length)fleetMap.fitBounds(b,{padding:[30,30],maxZoom:12});}return;}
+ if(action==='map-zoom'){fleetMap?.zoomIn();return;}
  if(action==='tv'){state.expenseModal='tv';rerender('rastreamento');return;}
  if(action==='proof-all'||action==='proof-example'||action==='fake-doc'){state.expenseModal='proof';rerender(action==='fake-doc'?'cadastros':'canhotos');return;}
  if(action==='dismiss-modal'){state.expenseModal='';rerender();return;}
