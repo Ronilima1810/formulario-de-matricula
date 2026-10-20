@@ -119,6 +119,7 @@ function modal(){if(!state.expenseModal)return '';const name=state.expenseModal;
 };const [title,message]=contents[name]||['Demonstração','Ação simulada localmente, sem banco de dados.'];return '<div class="fleet-modal-backdrop" data-action="dismiss-modal"><div class="fleet-modal" role="dialog" aria-modal="true" aria-label="'+title+'"><h2>'+title+'</h2><p>'+message+'</p><button type="button" data-action="dismiss-modal">Entendi</button></div></div>';}
 function render(){
  document.documentElement.dataset.theme=state.theme;
+ document.documentElement.dataset.rubyTheme=state.theme;
  app.innerHTML=banner()+'<main class="ag-page"><header class="ag-head"><div><span>RUBY TOWER CONTROL · OPERAÇÃO DE ÚLTIMA MILHA</span><h1>Gestão de agregados</h1><p>Cadastros, rastreamento em tempo real, comprovantes por NF-e e financeiro por saída.</p></div><div class="ag-live-pill"><i></i><span id="liveCounter">'+activeCount()+' em rota</span></div></header>'+
  '<nav class="ag-quick-nav" aria-label="Navegação interna de Agregados">'+nav.map(([id,label,svg])=>'<a href="#'+id+'">'+icon(svg)+label+'</a>').join('')+'</nav>'+
  KPIs()+alerts()+tracking()+dispatch()+canhotos()+finance()+cadastros()+tariffs()+
