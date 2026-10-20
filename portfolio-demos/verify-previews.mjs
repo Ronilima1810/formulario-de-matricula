@@ -49,9 +49,10 @@ check(kotlinPreview.includes('login_bg.mp4'),'Vídeo original na autenticação'
 
 check(catalog.includes("external:'./fleet/'"),'FleetOps na vitrine');
 const fleetHtml=readFileSync(resolve(base,'fleet/index.html'),'utf8');
+const fleetModule=readFileSync(resolve(base,'fleet/module.html'),'utf8');
 const fleetApp=readFileSync(resolve(base,'fleet/fleet-original.js'),'utf8');
-check(fleetHtml.includes('fleet-original.js')&&!fleetHtml.includes('../system/app.js'),'FleetOps usa frontend próprio e não demonstrativo genérico');
-check(fleetHtml.includes('native/ruby_admin_standard.css')&&fleetHtml.includes('native/agregados.css'),'CSS Ruby/Agregados originais presentes');
+check(fleetHtml.includes('../ruby-original/#/agregados')&&fleetModule.includes('fleet-original.js')&&!fleetModule.includes('../system/app.js'),'FleetOps está integrado ao workspace Ruby e usa frontend próprio');
+check(fleetModule.includes('native/ruby_admin_standard.css')&&fleetModule.includes('native/agregados.css'),'CSS Ruby/Agregados originais presentes');
 for(const section of ['visao-geral','alertas','rastreamento','atribuicao','canhotos','acertos','cadastros','tarifas','tarifa-individual']){
  check(fleetApp.includes(section),'Painel FleetOps: '+section);
 }
