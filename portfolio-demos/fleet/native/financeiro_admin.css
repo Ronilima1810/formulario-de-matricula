@@ -1,0 +1,99 @@
+
+/* UNION · Administração de Agregados — rastreamento e acertos financeiros */
+/* Aviso discreto quando o provedor vetorial estiver indisponível: não tapa marcadores. */
+.ag-map-failure{position:absolute;z-index:950;left:16px;right:16px;bottom:38px;
+  padding:10px 13px;border-radius:9px;background:rgba(11,18,36,.92);
+  color:#fff;border:1px solid #e9ad3c;font-size:11px;
+  pointer-events:none;text-align:center;box-shadow:0 6px 18px #0003}
+.ag-map .maplibregl-control-container{pointer-events:none}
+.ag-map .leaflet-control-attribution{font-size:10px;line-height:1.25;
+  background:rgba(255,255,255,.89);color:#2b3852;padding:3px 5px}
+.ag-map .leaflet-control-attribution a{color:#3c4d9b}
+.ag-map .leaflet-gl-layer{background:#e8edf6}
+.ag-alert-history{margin-top:13px}
+.ag-alert-history summary{cursor:pointer;font-size:11px;color:var(--ag-accent);font-weight:800}
+.ag-history-list{display:grid;gap:6px;margin-top:8px;max-height:250px;overflow:auto}
+.ag-history-item{border:1px solid var(--ag-line);padding:9px 11px;border-radius:9px;display:grid;gap:4px}
+.ag-history-item strong{font-size:11px}
+.ag-history-item span,.ag-history-item small{font-size:10px;color:var(--ag-muted)}
+.ag-alert-list{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+.ag-monitor-alert{border:1px solid #e9a33a;background:color-mix(in srgb,#f2ad33 11%,var(--ag-panel));color:var(--ag-text);border-radius:11px;cursor:pointer;padding:12px 14px;text-align:left;display:grid;gap:5px;max-width:460px;min-width:220px}
+.ag-monitor-alert.sem_sinal{border-color:#d95363;background:color-mix(in srgb,#d95363 9%,var(--ag-panel))}
+.ag-monitor-alert strong{font-size:12px}
+.ag-monitor-alert span{font-size:11px;color:var(--ag-muted)}
+.ag-monitor-alert small,.ag-no-alert{font-size:10px;color:var(--ag-muted)}
+.ag-no-alert{padding:7px 10px}
+.ag-live-toolbar{display:flex;gap:11px;align-items:center;flex-wrap:wrap}
+.ag-live-toolbar label{font-size:11px;color:var(--ag-muted);display:flex;align-items:center;gap:5px}
+.ag-live-toolbar button{border:1px solid var(--ag-line);background:var(--ag-panel);color:var(--ag-text);border-radius:7px;padding:7px 10px;cursor:pointer;font-size:10px}
+.ag-live-toolbar small{font-size:10px;color:var(--ag-muted)}
+.ag-map{height:445px;min-height:350px;touch-action:pan-x pan-y}
+.ag-live-list{max-height:445px}
+.ag-live-item{border:0;border-bottom:1px solid var(--ag-line);background:var(--ag-panel);width:100%;display:block;text-align:left;cursor:pointer;color:var(--ag-text)}
+.ag-live-item:hover,.ag-live-item.ag-selected{background:color-mix(in srgb,var(--ag-accent) 8%,var(--ag-panel))}
+.ag-live-item-heading{display:flex!important;align-items:center;gap:8px;justify-content:space-between}
+.ag-gps-state{font-size:9px;font-weight:900;color:var(--ag-green);font-style:normal}
+.ag-gps-state.parado{color:#cd8129}.ag-gps-state.sem_sinal{color:var(--ag-red)}
+.ag-live-warning{display:block;font-size:10px;color:var(--ag-red);font-weight:700;margin-top:7px}
+.ag-map-pin-wrap,.ag-map-stop-wrap{background:transparent;border:0}
+.ag-map-pin,.ag-map-stop{display:grid;place-items:center;line-height:1;border-radius:50%;height:34px;width:34px;border:2px solid white;background:var(--pin);color:white;font-size:16px;box-shadow:0 3px 11px #03071977;font-weight:800}
+.ag-map-stop{height:29px;width:29px;font-size:11px}
+.ag-fin-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:11px}
+.ag-fin-kpis article{padding:12px;border:1px solid var(--ag-line);border-radius:10px;background:color-mix(in srgb,var(--ag-bg) 70%,var(--ag-panel))}
+.ag-fin-kpis article small{font-size:9px;color:var(--ag-muted);font-weight:800;display:block}
+.ag-fin-kpis article strong{font-size:19px;display:block;margin-top:4px}
+.ag-fin-help{border-left:3px solid var(--ag-accent);background:color-mix(in srgb,var(--ag-accent) 4%,var(--ag-panel));padding:9px 12px;color:var(--ag-muted);font-size:11px;line-height:1.55}
+.ag-fin-subtitle{font-size:14px;margin:21px 0 9px}
+.ag-table-wrap{overflow:auto;max-width:100%;border:1px solid var(--ag-line);border-radius:10px}
+.ag-fin-table{border-collapse:collapse;min-width:1040px;width:100%;background:var(--ag-panel)}
+.ag-fin-table th{background:color-mix(in srgb,var(--ag-bg) 70%,var(--ag-panel));font-size:10px;font-weight:800;text-align:left;color:var(--ag-muted);position:sticky;top:0;white-space:nowrap;padding:12px 9px}
+.ag-fin-table td{border-top:1px solid var(--ag-line);padding:12px 9px;vertical-align:top;font-size:11px;line-height:1.48}
+.ag-fin-table td small{display:block;color:var(--ag-muted);font-size:10px;margin-top:4px}
+.ag-fin-table td b,.ag-fin-table td strong{color:var(--ag-text)}
+.ag-fin-table tr[hidden]{display:none}
+.ag-fin-filters{display:flex;gap:8px;margin:8px 0 10px;flex-wrap:wrap}
+.ag-fin-filters input,.ag-fin-filters select,.ag-pricing select{padding:9px;border:1px solid var(--ag-line);background:var(--ag-panel);color:var(--ag-text);border-radius:8px;font-size:11px}
+.ag-fin-filters input{width:min(100%,390px)}
+.ag-pay-status{font-size:9px;border-radius:9px;padding:4px 7px;background:color-mix(in srgb,#e9a33a 13%,var(--ag-panel));color:#a57317;font-weight:900;text-transform:uppercase;white-space:nowrap}
+.ag-pay-status.aprovado{background:color-mix(in srgb,#24a97c 10%,var(--ag-panel));color:var(--ag-green)}
+.ag-pay-status.pago{background:color-mix(in srgb,#7c5cfd 10%,var(--ag-panel));color:var(--ag-accent)}
+.ag-acerto-actions{min-width:245px}
+.ag-acerto-actions details{min-width:245px}
+.ag-acerto-actions summary{font-weight:800;cursor:pointer;background:color-mix(in srgb,var(--ag-accent) 7%,var(--ag-panel));color:var(--ag-accent);border:1px solid var(--ag-line);border-radius:9px;padding:7px 9px;list-style:none}
+.ag-acerto-actions summary::after{content:" ⌄"}
+.ag-detail-content{background:var(--ag-panel);margin-top:9px;padding:12px;border:1px solid var(--ag-line);border-radius:11px;min-width:320px;max-width:470px;line-height:1.6}
+.ag-detail-content h4{font-size:11px;margin:10px 0 5px}
+.ag-detail-content p{font-size:11px;color:var(--ag-muted);margin:5px 0}
+.ag-detail-content a{color:var(--ag-accent)}
+.ag-expense-line{display:grid;gap:8px;grid-template-columns:minmax(0,1fr) auto;padding:9px 0;border-bottom:1px solid var(--ag-line)}
+.ag-expense-line small{color:var(--ag-muted)}
+.ag-expense-line form{display:flex;gap:5px;flex-wrap:wrap;align-items:start}
+.ag-detail-content button{border:0;background:var(--ag-accent);color:white;border-radius:7px;padding:9px 10px;font-weight:800;font-size:10px;cursor:pointer}
+.ag-detail-content button:disabled{opacity:.4;cursor:not-allowed}
+.ag-detail-content .ag-btn-red{background:var(--ag-red)}
+.ag-edit-acerto{display:grid;grid-template-columns:repeat(2,minmax(130px,1fr));gap:9px;margin:10px 0}
+.ag-edit-acerto label{font-size:10px;color:var(--ag-muted);display:grid;gap:4px}
+.ag-edit-acerto input{padding:9px;border:1px solid var(--ag-line);background:var(--ag-panel);color:var(--ag-text);border-radius:8px;min-width:0;max-width:100%}
+.ag-edit-acerto .ag-form-wide{grid-column:1/-1}
+.ag-edit-acerto button{grid-column:1/-1}
+.ag-detail-content .ag-paid{color:var(--ag-green);font-weight:800}
+@media(max-width:980px){.ag-fin-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.ag-live-grid{grid-template-columns:1fr}.ag-fin-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.ag-fin-kpis article strong{font-size:15px}.ag-detail-content{max-width:320px}.ag-pricing{grid-template-columns:1fr}}
+
+/* Tarifa por saída com franquia de KM e valor somente pelo excedente. */
+.ag-pricing-negociacao .ag-rule-preview {
+  grid-column:1/-1;
+  padding:12px 15px;
+  border:1px solid color-mix(in srgb,var(--ag-accent) 28%,var(--ag-line));
+  border-radius:10px;
+  background:color-mix(in srgb,var(--ag-accent) 6%,var(--ag-panel));
+  color:var(--ag-text);
+  font-size:12px;
+  line-height:1.6;
+}
+.ag-pricing-negociacao>button {grid-column:1/-1;justify-self:end;min-width:200px}
+.ag-km-alert {color:var(--ag-red)!important;font-weight:700;border-left:3px solid var(--ag-red);padding-left:9px}
+.ag-km-manual {display:flex!important;flex-direction:row;gap:8px!important;align-items:center;font-weight:700;color:var(--ag-text)!important}
+.ag-km-manual input {width:16px;height:16px;flex:none}
+.ag-edit-acerto input:disabled {opacity:.55;cursor:not-allowed}
+@media(max-width:600px) {.ag-pricing-negociacao>button{width:100%}.ag-pricing-negociacao .ag-rule-preview{font-size:11px}}
