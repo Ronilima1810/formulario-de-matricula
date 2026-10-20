@@ -56,7 +56,7 @@ for(const section of ['visao-geral','alertas','rastreamento','atribuicao','canho
  check(fleetApp.includes("'"+section+"'"),'Painel FleetOps: '+section);
 }
 check(fleetApp.includes('example.invalid'),'Cadastros FleetOps são fictícios');
-check(!/fetch\\(|XMLHttpRequest|WebSocket\\(/.test(fleetApp),'FleetOps sem conexões a APIs reais');
+check(!fleetApp.includes('fetch(')&&!fleetApp.includes('XMLHttpRequest')&&!fleetApp.includes('WebSocket('),'FleetOps sem conexões a APIs reais');
 
 const native=readFileSync(resolve(base,'ruby-original/assets/index-original-portal.js'),'utf8');
 check(native.includes('Central de operações'),'Ruby original inclui a tela Command Center');
