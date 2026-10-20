@@ -7,7 +7,7 @@ const base=resolve(process.cwd(),'portfolio-demos');
 const pages=[
  ['Ruby', 'ruby/index.html','system/app.js','system/styles.css'],
  ['Ruby original', 'ruby-original/index.html','ruby-original/mock-api.js','ruby-original/module-demo.html','ruby-original/module-demo.js','ruby-original/module-demo.css','ruby-original/assets/ruby-theme.css','ruby-original/assets/index-original-portal.js','ruby-original/assets/index-BhmzTfeJ.css','ruby-original/assets/ruby-responsive-100.css','ruby-original/assets/union.png'],
- ['FleetOps Admin','fleet/index.html','system/app.js','system/styles.css'],
+ ['FleetOps Admin','fleet/index.html','fleet/fleet-original.js','fleet/fleet-original.css','fleet/native/ruby-theme.css','fleet/native/agregados.css','fleet/native/financeiro_admin.css','fleet/native/ruby_admin_standard.css','fleet/native/admin_legibilidade_0322.css','fleet/native/admin_dispatch_0321.css'],
  ['Android simulator','android/index.html','android/native-v3.js','android/native-v3.css','android/assets/native-icons.svg','android/assets/union_brand.png','android/assets/login_bg.mp4'],
  ['PDV Electron preview','pdv/index.html','pdv/app.js','pdv/styles.css'],
  ['Wave Control','ondas/index.html','ondas/app.js','ondas/styles.css']
@@ -20,7 +20,7 @@ for(const [label,...files] of pages){
  check(/<meta[^>]+Content-Security-Policy/i.test(html),label+': CSP definida');
  check(/<meta[^>]+viewport/i.test(html),label+': viewport responsivo');
 }
-for(const file of ['assets/ruby-showcase-v7.js','ruby-original/mock-api.js','ruby-original/module-demo.js','ruby-original/assets/index-original-portal.js','system/app.js','android/native-v3.js','pdv/app.js','ondas/app.js']){
+for(const file of ['assets/ruby-showcase-v7.js','ruby-original/mock-api.js','ruby-original/module-demo.js','ruby-original/assets/index-original-portal.js','system/app.js','fleet/fleet-original.js','android/native-v3.js','pdv/app.js','ondas/app.js']){
  const path=resolve(base,file);
  check(existsSync(path),'JS disponível: '+file);
  if(existsSync(path)){
@@ -48,6 +48,16 @@ check(kotlinPreview.includes('union_brand.png'),'Logo Union original na navegaç
 check(kotlinPreview.includes('login_bg.mp4'),'Vídeo original na autenticação');
 
 check(catalog.includes("external:'./fleet/'"),'FleetOps na vitrine');
+const fleetHtml=readFileSync(resolve(base,'fleet/index.html'),'utf8');
+const fleetApp=readFileSync(resolve(base,'fleet/fleet-original.js'),'utf8');
+check(fleetHtml.includes('fleet-original.js')&&!fleetHtml.includes('../system/app.js'),'FleetOps usa frontend próprio e não demonstrativo genérico');
+check(fleetHtml.includes('native/ruby_admin_standard.css')&&fleetHtml.includes('native/agregados.css'),'CSS Ruby/Agregados originais presentes');
+for(const section of ['visao-geral','alertas','rastreamento','atribuicao','canhotos','acertos','cadastros','tarifas','tarifa-individual']){
+ check(fleetApp.includes("'"+section+"'"),'Painel FleetOps: '+section);
+}
+check(fleetApp.includes('example.invalid'),'Cadastros FleetOps são fictícios');
+check(!/fetch\\(|XMLHttpRequest|WebSocket\\(/.test(fleetApp),'FleetOps sem conexões a APIs reais');
+
 const native=readFileSync(resolve(base,'ruby-original/assets/index-original-portal.js'),'utf8');
 check(native.includes('Central de operações'),'Ruby original inclui a tela Command Center');
 check(native.includes('launcher-card'),'Ruby original usa cards reais');
