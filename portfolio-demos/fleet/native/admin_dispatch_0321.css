@@ -1,0 +1,17 @@
+/* UNION ADMIN · Atribuição segura de romaneios a motorista */
+.ag-dispatch-top{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.ag-dispatch-top label,.ag-dispatch-row label{display:grid;gap:6px;font-size:11px;color:var(--ag-muted);font-weight:800}
+.ag-dispatch-caption{font-size:10px;font-weight:850;letter-spacing:.75px;color:var(--ag-accent);margin:16px 0 9px}
+.ag-dispatch-rows{display:grid;gap:9px}
+.ag-dispatch-row{display:grid;grid-template-columns:minmax(150px,.72fr) minmax(210px,1.7fr) 40px;gap:11px;align-items:end;
+ border:1px solid var(--ag-line);background:var(--ag-soft);padding:12px;border-radius:12px}
+.ag-dispatch-row select,.ag-dispatch-row input{width:100%}
+.ag-dispatch-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0}
+.ag-dispatch-actions button{min-height:40px}
+.ag-dispatch-actions button[type=button]{border:1px solid var(--ag-line-strong);background:var(--ag-panel);color:var(--ag-text)}
+.ag-remove-manifest{min-height:38px!important;padding:0!important;font-size:19px!important;line-height:1}
+.ag-dispatch-feedback{padding:11px 13px;color:var(--ag-accent);font-size:11px;font-weight:750;border-radius:9px;margin-top:9px}
+.ag-dispatch-feedback.success{background:color-mix(in srgb,var(--ag-green) 12%,var(--ag-panel));color:var(--ag-green)}
+.ag-dispatch-feedback.error{background:color-mix(in srgb,var(--ag-red) 11%,var(--ag-panel));color:var(--ag-red)}
+.ag-map-tv-link{font-size:11px;font-weight:800;display:inline-flex;align-items:center;color:var(--ag-accent);border:1px solid var(--ag-line);border-radius:9px;padding:8px 10px;text-decoration:none}
+@media(max-width:700px){.ag-dispatch-top{grid-template-columns:1fr}.ag-dispatch-row{grid-template-columns:minmax(0,1fr);gap:8px}.ag-remove-manifest{justify-self:end;width:42px}}
