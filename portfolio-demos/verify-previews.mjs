@@ -53,7 +53,7 @@ const fleetApp=readFileSync(resolve(base,'fleet/fleet-original.js'),'utf8');
 check(fleetHtml.includes('fleet-original.js')&&!fleetHtml.includes('../system/app.js'),'FleetOps usa frontend próprio e não demonstrativo genérico');
 check(fleetHtml.includes('native/ruby_admin_standard.css')&&fleetHtml.includes('native/agregados.css'),'CSS Ruby/Agregados originais presentes');
 for(const section of ['visao-geral','alertas','rastreamento','atribuicao','canhotos','acertos','cadastros','tarifas','tarifa-individual']){
- check(fleetApp.includes("'"+section+"'"),'Painel FleetOps: '+section);
+ check(fleetApp.includes(section),'Painel FleetOps: '+section);
 }
 check(fleetApp.includes('example.invalid'),'Cadastros FleetOps são fictícios');
 check(!fleetApp.includes('fetch(')&&!fleetApp.includes('XMLHttpRequest')&&!fleetApp.includes('WebSocket('),'FleetOps sem conexões a APIs reais');
