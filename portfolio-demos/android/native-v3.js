@@ -57,16 +57,21 @@ function history(){const records=s.routes.filter(x=>x.status==='finalizada').fil
 (records.slice(0,s.historyLimit).map(x=>'<article class="n-panel"><div class="n-row">'+ic('packageCheck')+'<div class="n-grow"><h3>'+esc(x.title)+'</h3><p>'+x.stops.length+'/'+x.stops.length+' entregas · '+x.km+' km</p></div></div><div class="n-row n-between"><span class="n-minor n-muted">Finalizada: '+esc(x.finishedAt||'19/10/2026 às 09:20')+'</span>'+badge('entregue')+'</div><div style="margin-top:10px">'+btn('Consultar corrida','route:'+x.id,'outline','file')+'</div></article>').join('')||'<div class="n-panel">Nenhuma corrida finalizada ainda.</div>')+
 '<button class="n-outline" data-act="history-more" style="width:100%">'+ic('down')+' Carregar corridas anteriores</button></div>';}
 function loginPage(){
- return '<div class="n-scroll">'+logo+'<div class="login-caption">TOWER CONTROL · AGREGADOS</div>'+
- '<div class="login-hero" aria-label="UNION Tower Control"><div class="login-hero-glow"></div><img src="assets/union_brand.png" alt="UNION" class="login-hero-brand"><div class="login-hero-rule"></div><span>TECNOLOGIA PARA A ÚLTIMA MILHA</span></div>'+
- '<div class="login-title">Acesse sua conta</div><p class="login-desc">Utilize o mesmo e-mail e senha do PWA.</p>'+
- '<form id="login-form" class="login-card">'+field('E-mail','login-email','agregado@exemplo.invalid','email','')+
- '<label class="n-field">Senha<div style="position:relative"><input type="'+(s.showPw?'text':'password')+'" id="login-password" placeholder="Senha fictícia" style="padding-right:81px"><button type="button" data-act="show-password" style="position:absolute;right:6px;top:5px;border:0;background:transparent;color:#6848d8;padding:10px;font-size:11px">'+(s.showPw?'Ocultar':'Mostrar')+'</button></div></label>'+
- '</form><button form="login-form" type="submit" class="login-submit">Entrar</button>'+
- '<button class="login-text-btn" data-go="forgot">Esqueci minha senha</button>'+
- '<button class="login-text-btn secondary" data-go="register">Criar cadastro de agregado</button>'+
- '<div class="login-actions-divider"></div><button class="login-text-btn" data-act="updates">↻ Verificar atualização do aplicativo</button>'+
- '<p style="font-size:10px;color:#626b7c;text-align:center;margin-top:6px">UNION · Versão demonstrativa</p></div>';
+ return '<div class="union-login-screen">'+
+ '<div class="union-login-banner"><video playsinline autoplay muted loop preload="metadata" poster="assets/union_brand.png" src="assets/login_bg.mp4" aria-label="Identidade visual UNION"></video></div>'+
+ '<div class="union-login-body"><form id="login-form" class="union-login-card">'+
+ '<h2>Bem-vindo(a) ao <span>Union</span></h2>'+
+ '<p class="union-login-intro">Conecte-se à sua conta para continuar sua jornada.</p>'+
+ '<label class="union-login-field"><span class="union-field-icon">✉</span><input id="login-email" type="email" autocomplete="off" placeholder="E-mail" aria-label="E-mail"></label>'+
+ '<label class="union-login-field"><span class="union-field-icon">♙</span><input id="login-password" type="'+(s.showPw?'text':'password')+'" autocomplete="off" placeholder="Senha" aria-label="Senha"><button type="button" data-act="show-password" class="union-show-password" aria-label="'+(s.showPw?'Ocultar':'Mostrar')+' senha">'+(s.showPw?'◉':'◉̸')+'</button></label>'+
+ '<button type="button" data-go="forgot" class="union-forgot">Esqueci minha senha</button>'+
+ '<button type="submit" class="union-enter">Entrar <span>→</span></button>'+
+ '<div class="union-signup-title"><span></span>Ainda não tem uma conta?<span></span></div>'+
+ '<button type="button" data-go="register" class="union-register">Cadastrar</button>'+
+ '</form>'+
+ '<button type="button" class="union-update" data-act="updates">↻ &nbsp;Verificar atualização do aplicativo</button>'+
+ '<div class="union-version">UNION · Versão 0.3.27 <span>· Preview demonstrativo</span></div>'+
+ '</div></div>';
 }
 function registerPage(){
 const fields=[['E-mail','reg-email','email'],['Senha','reg-password','password'],['Nome completo','reg-name'],['Data de nascimento (AAAA-MM-DD)','reg-birth'],['RG','reg-rg'],['CPF','reg-cpf'],['CNPJ / MEI','reg-cnpj'],['Conta bancária PJ','reg-bank'],['Chave PIX','reg-pix'],['Placa do veículo','reg-plate'],['Modelo do veículo','reg-model']];
