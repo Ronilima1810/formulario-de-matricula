@@ -38,3 +38,35 @@
 .login-actions-divider{height:1px;background:#e3e5ec;margin:7px 0 3px}
 .login-text-btn{font-size:12px;min-height:33px}
 @media(max-width:380px){.login-hero{min-height:155px}.login-hero-brand{max-height:78px}}
+
+/* Login Union 0.3.27 — screenshot-matched dark violet mobile preview */
+.phone.login-mode{background:#100520}
+.phone.login-mode .android-status{background:#10051b;color:#fff}
+.phone.login-mode .android-gesture{background:#10051b}
+.phone.login-mode .android-gesture span{background:#e5e1ec}
+.n-login{background:#130821!important;color:#fff!important}
+.n-login .union-login-screen{background:linear-gradient(180deg,#11051e 0%,#1a0a2f 68%,#280d44 100%);color:#fff;min-height:100%;padding:0}
+.n-login .n-page,.n-login .n-scroll{background:transparent}
+.union-login-banner{height:190px;width:100%;overflow:hidden;background:radial-gradient(ellipse at center,#54219c 10%,#11031f 78%)}
+.union-login-banner video{display:block;width:100%;height:100%;object-fit:cover;object-position:center center}
+.union-login-body{padding:6px 18px 24px}
+.union-login-card{background:linear-gradient(155deg,#241238 0%,#120b22 100%);border:1.5px solid #8c39d4;box-shadow:0 0 0 1px #9b44df18,0 15px 35px #0002;border-radius:25px;padding:25px 17px 23px;display:flex;flex-direction:column;gap:0}
+.union-login-card h2{margin:3px 0 9px;font-size:21px;font-weight:850;letter-spacing:-.025em;color:#fff;text-align:center;white-space:nowrap}
+.union-login-card h2 span{color:#b15bff}
+.union-login-intro{color:#afa3bd;text-align:center;font-size:13px;line-height:1.55;margin:0 5px 23px}
+.union-login-field{display:flex;align-items:center;gap:12px;min-height:53px;border-radius:15px;border:1px solid #55436e;background:#251b38;margin-bottom:12px;padding:0 13px}
+.union-login-field:focus-within{border-color:#ab5aff;box-shadow:0 0 0 2px #a148e92e}
+.union-login-field input{min-width:0;flex:1;width:100%;border:0;outline:0;background:transparent;color:#fff;font-size:15px}
+.union-login-field input::placeholder{color:#958ba5}
+.union-field-icon{color:#c4b5e2;font-size:23px;width:21px;line-height:1;text-align:center}
+.union-show-password{background:none;border:0;color:#c4b5e2;font-size:21px;padding:6px;cursor:pointer}
+.union-forgot{border:0;background:transparent;color:#c17aff;font-size:12px;font-weight:750;align-self:flex-end;padding:2px 0 16px;cursor:pointer}
+.union-enter{border:1px solid #d5a4ff;background:linear-gradient(105deg,#9845ec,#a43ef0);border-radius:15px;color:white;width:100%;min-height:53px;box-shadow:0 9px 20px #9d3feb38;font-weight:800;font-size:17px;cursor:pointer}
+.union-enter span{margin-left:8px;font-size:21px}
+.union-signup-title{display:flex;align-items:center;gap:8px;white-space:nowrap;color:#ac9db5;font-size:10px;margin:27px 0 20px}
+.union-signup-title span{height:1px;background:#514065;flex:1}
+.union-register{width:100%;min-height:51px;border-radius:15px;background:#100a1f;border:1.5px solid #b052fd;color:#c36aff;font-weight:800;font-size:16px;cursor:pointer}
+.union-update{display:block;margin:25px auto 10px;border:0;background:transparent;color:#a99db3;font-size:11px;cursor:pointer}
+.union-version{text-align:center;font-size:10px;color:#877a96;letter-spacing:.03em}
+.union-version span{font-size:9px;color:#776982}
+@media(max-width:380px){.union-login-banner{height:170px}.union-login-card{padding:22px 15px}.union-login-body{padding-inline:13px}}
