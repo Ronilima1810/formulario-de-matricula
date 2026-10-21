@@ -58,7 +58,7 @@ function history(){const records=s.routes.filter(x=>x.status==='finalizada').fil
 '<button class="n-outline" data-act="history-more" style="width:100%">'+ic('down')+' Carregar corridas anteriores</button></div>';}
 function loginPage(){
  return '<div class="union-login-screen">'+
- '<div class="union-login-banner"><video playsinline autoplay muted loop preload="metadata" poster="assets/union_brand.png" src="assets/login_bg.mp4" aria-label="Identidade visual UNION"></video></div>'+
+ '<div class="union-login-banner"><img src="assets/union-login-hero-exact.webp" alt="Logomarca UNION violeta e amarela com ondas luminosas" width="600" height="332"></div>'+
  '<div class="union-login-body"><form id="login-form" class="union-login-card">'+
  '<h2>Bem-vindo(a) ao <span>Union</span></h2>'+
  '<p class="union-login-intro">Conecte-se à sua conta para continuar sua jornada.</p>'+
