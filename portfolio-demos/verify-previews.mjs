@@ -45,7 +45,7 @@ for(const token of ['#060d1c','#0e1a33','#9d60ff','#ffd52a','#35e08a']){
 }
 check(kotlinPreview.includes('native-icons.svg'),'Ícones Android extraídos de TechIcons');
 check(kotlinPreview.includes('union_brand.png'),'Logo Union original na navegação e login');
-check(kotlinPreview.includes('login-hero-brand') && !kotlinPreview.includes('login_bg.mp4'),'Novo login UNION sem vídeo');
+check(kotlinPreview.includes('union-login-card') && kotlinPreview.includes('login_bg.mp4'),'Login roxo UNION com mídia original e formulário');
 
 check(catalog.includes("external:'./fleet/'"),'FleetOps na vitrine');
 const fleetHtml=readFileSync(resolve(base,'fleet/index.html'),'utf8');
